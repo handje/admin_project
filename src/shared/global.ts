@@ -55,4 +55,14 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+button{
+	all:unset;
+	cursor: pointer;
+	&:focus{
+		outline: none;
+	}
+	&:hover{
+		background-color: black;
+	}
+}
 `;

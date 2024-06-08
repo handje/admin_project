@@ -54,7 +54,7 @@ const NavIcon = styled(BsList)`
 `;
 
 const SectionTitle = styled.div`
-  padding-left: 48px;
+  padding-left: 35px;
   & > h1 {
     font-size: 1.5rem;
   }
