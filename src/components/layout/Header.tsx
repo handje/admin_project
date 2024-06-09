@@ -5,7 +5,9 @@ const Header = () => {
   return (
     <StyledHeader>
       <LeftHeader>
-        <NavIcon />
+        <button>
+          <NavIcon />
+        </button>
         <h1>AUTHORIZED</h1>
       </LeftHeader>
       <SectionTitle>
@@ -15,7 +17,9 @@ const Header = () => {
         <Icons>
           <BsMoon />
           <BsMoonFill />
-          <BsPersonCircle />
+          <button>
+            <BsPersonCircle />
+          </button>
         </Icons>
       </IconContainer>
     </StyledHeader>
@@ -46,6 +50,9 @@ const LeftHeader = styled.div`
   & > h1 {
     font-size: 2rem;
     font-weight: 600;
+  }
+  & > button {
+    padding-top: 10px;
   }
 `;
 

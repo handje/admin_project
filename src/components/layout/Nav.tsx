@@ -4,26 +4,48 @@ import {
   BsFillFileEarmarkPersonFill,
   BsBagCheckFill,
 } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 const Nav = () => {
+  const navigate = useNavigate();
   return (
-    <StyledNav>
-      <Menu>
-        <BsHouseDoorFill />
-        <p>Home</p>
-      </Menu>
-      <Menu>
-        <BsBagCheckFill />
-        <p>Products</p>
-      </Menu>
-      <Menu>
-        <BsFillFileEarmarkPersonFill />
-        <p>Users</p>
-      </Menu>
-    </StyledNav>
+    <NavContainer>
+      <StyledNav>
+        <Menu
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          <BsHouseDoorFill />
+          <p>Home</p>
+        </Menu>
+        <Menu
+          onClick={() => {
+            navigate("/product");
+          }}
+        >
+          <BsBagCheckFill />
+          <p>Products</p>
+        </Menu>
+        <Menu
+          onClick={() => {
+            navigate("user");
+          }}
+        >
+          <BsFillFileEarmarkPersonFill />
+          <p>Users</p>
+        </Menu>
+      </StyledNav>
+    </NavContainer>
   );
 };
-
+const NavContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  padding-top: 64px;
+  margin-right: 30px;
+`;
 const StyledNav = styled.nav`
   bottom: 0;
   display: flex;

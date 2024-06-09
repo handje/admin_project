@@ -1,13 +1,13 @@
 import { GlobalStyle } from "./shared/global";
+import { RouterProvider } from "react-router-dom";
 
-import Layout from "./components/Layout";
-import Card from "./components/layout/Card";
+import { router } from "./router";
+
 function App() {
   return (
     <>
       <GlobalStyle />
-      <Layout />
-      <Card />
+      <RouterProvider router={router}></RouterProvider>
     </>
   );
 }
