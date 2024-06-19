@@ -45,6 +45,7 @@ body,
 }
 body {
 	line-height: 1;
+	overflow: hidden;
 }
 ol, ul {
 	list-style: none;
@@ -66,6 +67,14 @@ button{
 	cursor: pointer;
 	&:focus{
 		outline: none;
+	}
+}
+a{
+	text-decoration: none;
+	outline: none;
+	color:black;
+	&:hover :active{
+		text-decoration: none;
 	}
 }
 `;

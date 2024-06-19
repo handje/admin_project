@@ -1,19 +1,25 @@
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import {
   BsHouseDoorFill,
   BsFillFileEarmarkPersonFill,
   BsBagCheckFill,
 } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
+
+import { TitleContext } from "../../store/TitleContext";
 
 const Nav = () => {
   const navigate = useNavigate();
+  const { handleChangeTitle } = useContext(TitleContext);
+
   return (
     <NavContainer>
       <StyledNav>
         <Menu
           onClick={() => {
             navigate("/");
+            handleChangeTitle("Home");
           }}
         >
           <BsHouseDoorFill />
@@ -21,7 +27,8 @@ const Nav = () => {
         </Menu>
         <Menu
           onClick={() => {
-            navigate("/product");
+            navigate("product");
+            handleChangeTitle("Products");
           }}
         >
           <BsBagCheckFill />
@@ -29,11 +36,12 @@ const Nav = () => {
         </Menu>
         <Menu
           onClick={() => {
-            navigate("user");
+            navigate("customers");
+            handleChangeTitle("Customers");
           }}
         >
           <BsFillFileEarmarkPersonFill />
-          <p>Users</p>
+          <p>Customers</p>
         </Menu>
       </StyledNav>
     </NavContainer>
@@ -66,7 +74,7 @@ const Menu = styled.button`
   transition: 0.3s;
   border-radius: 0 24px 24px 0;
   & > p {
-    padding-left: 10px;
+    padding-left: 5px;
   }
   &:hover {
     background-color: var(--secondary-blue-color);

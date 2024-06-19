@@ -18,6 +18,7 @@ const CardContainer = styled.div`
   width: 400px;
   height: 300px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 0px 10px;
 `;
 const ChartContainer = styled.div`
   height: 70%;

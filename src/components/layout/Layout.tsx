@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
+import styled from "styled-components";
 
 import Header from "./Header";
 import Nav from "./Nav";
-import styled from "styled-components";
 
 const Layout = () => {
   return (
@@ -27,7 +27,7 @@ const Container = styled.div`
 `;
 const Content = styled.div`
   width: 100%;
-  padding-top: 64px;
+  padding: 64px 10px 0 0;
   display: flex;
 `;
 export default Layout;

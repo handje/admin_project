@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "./components/layout";
 import { Home } from "./components/home";
 import { Product } from "./components/product";
-import { User } from "./components/user";
+import { Customers } from "./components/customers";
 
 export const router = createBrowserRouter([
   {
@@ -19,8 +19,8 @@ export const router = createBrowserRouter([
         element: <Product />,
       },
       {
-        path: "user",
-        element: <User />,
+        path: "customers",
+        element: <Customers />,
       },
     ],
   },

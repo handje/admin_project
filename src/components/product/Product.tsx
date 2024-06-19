@@ -1,5 +1,11 @@
+import Table from "../common/Table";
+
 const Product = () => {
-  return <div>products</div>;
+  return (
+    <>
+      <Table />
+    </>
+  );
 };
 
 export default Product;

@@ -2,12 +2,15 @@ import { GlobalStyle } from "./shared/global";
 import { RouterProvider } from "react-router-dom";
 
 import { router } from "./router";
+import { TitleContextProvider } from "./store/TitleContext";
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <RouterProvider router={router}></RouterProvider>
+      <TitleContextProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </TitleContextProvider>
     </>
   );
 }

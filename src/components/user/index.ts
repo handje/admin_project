@@ -1,3 +1,4 @@
-import User from "./User";
+import Info from "./Info";
+import UserIcon from "./UserIcon";
 
-export { User };
+export { UserIcon, Info };

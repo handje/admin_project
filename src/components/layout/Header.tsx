@@ -1,7 +1,12 @@
+import { useContext } from "react";
 import styled from "styled-components";
-import { BsList, BsMoon, BsMoonFill, BsPersonCircle } from "react-icons/bs";
+import { BsList, BsMoon, BsMoonFill } from "react-icons/bs";
+
+import { UserIcon } from "../user";
+import { TitleContext } from "../../store/TitleContext";
 
 const Header = () => {
+  const { title } = useContext(TitleContext);
   return (
     <StyledHeader>
       <LeftHeader>
@@ -11,15 +16,13 @@ const Header = () => {
         <h1>AUTHORIZED</h1>
       </LeftHeader>
       <SectionTitle>
-        <h1>HOME</h1>
+        <h1>{title}</h1>
       </SectionTitle>
       <IconContainer>
         <Icons>
           <BsMoon />
           <BsMoonFill />
-          <button>
-            <BsPersonCircle />
-          </button>
+          <UserIcon />
         </Icons>
       </IconContainer>
     </StyledHeader>
