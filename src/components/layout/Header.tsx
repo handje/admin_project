@@ -1,18 +1,18 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { BsList, BsMoon, BsMoonFill } from "react-icons/bs";
+import { BsList } from "react-icons/bs";
 
 import { UserIcon } from "../user";
 import { TitleContext } from "../../store/TitleContext";
 
-const Header = () => {
+const Header = ({ onNavOpen }: { onNavOpen: () => void }) => {
   const { title } = useContext(TitleContext);
   return (
     <StyledHeader>
       <LeftHeader>
-        <button>
-          <NavIcon />
-        </button>
+        <>
+          <NavIcon onClick={onNavOpen} />
+        </>
         <h1>AUTHORIZED</h1>
       </LeftHeader>
       <SectionTitle>
@@ -20,8 +20,6 @@ const Header = () => {
       </SectionTitle>
       <IconContainer>
         <Icons>
-          <BsMoon />
-          <BsMoonFill />
           <UserIcon />
         </Icons>
       </IconContainer>
@@ -61,6 +59,7 @@ const LeftHeader = styled.div`
 
 const NavIcon = styled(BsList)`
   font-size: 2rem;
+  cursor: pointer;
 `;
 
 const SectionTitle = styled.div`

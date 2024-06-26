@@ -6,7 +6,7 @@ interface titleContext {
 }
 
 export const TitleContext = createContext<titleContext>({
-  title: "home",
+  title: "",
   handleChangeTitle: () => {},
 });
 
@@ -15,7 +15,7 @@ export const TitleContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [title, setTitle] = useState<string>("Home");
+  const [title, setTitle] = useState<string>("");
 
   const handleChangeTitle = (selected: string): void => {
     setTitle(selected);

@@ -1,33 +1,44 @@
-import { forwardRef, useImperativeHandle, useRef } from "react";
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
-const Modal = styled.dialog`
-  width: 500px;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: fixed;
-  top: 30%;
-`;
-const Info = forwardRef<HTMLDialogElement>(({ title }, ref) => {
+
+interface ModalProps {
+  open: boolean;
+  onClose: () => void;
+}
+
+const Info = ({ open, onClose }: ModalProps) => {
+  const dialog = useRef<HTMLDialogElement>(null);
+  console.log(open);
+  useEffect(() => {
+    if (open) {
+      if (dialog.current === null) return;
+      console.log("open");
+      dialog.current.showModal();
+    } else {
+      if (dialog.current === null) return;
+      dialog.current.close();
+    }
+  }, [open]);
+
   return (
-    <dialog ref={ref}>
+    <dialog ref={dialog} onClose={onClose}>
+      <Header>
+        <h2>User</h2>
+        <button onClick={onClose}>X</button>
+      </Header>
       <div>
-        <button
-          onClick={() => {
-            ref.current.close();
-          }}
-        >
-          X
-        </button>
-        <h2>Info</h2>
-      </div>
-      <div>
-        <p>This is user's info</p>
-        <p>This is user's info</p>
+        <p>NAME : Admin</p>
+        <p>DEPT : DEV</p>
+        <p>NUM : 000000000</p>
+        <p>EMAIL : aaa@gamil.com</p>
       </div>
     </dialog>
   );
-});
-
+};
+const Header = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+`;
 export default Info;

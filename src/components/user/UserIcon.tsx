@@ -1,20 +1,22 @@
-import { useRef } from "react";
+import { useState } from "react";
 import { BsPersonCircle } from "react-icons/bs";
 
-import { Info } from ".";
+import Info from "./Info.tsx";
 
 const UserIcon = () => {
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
-  const openDialog = () => {
-    if (dialogRef.current === null) return;
-    dialogRef.current.showModal();
+  const [isUserModalOpen, setIsUSerModalOpen] = useState(false);
+  console.log(isUserModalOpen);
+  const handleOpenModal = () => {
+    setIsUSerModalOpen(true);
   };
 
+  const handleCloseModal = () => {
+    setIsUSerModalOpen(false);
+  };
   return (
     <>
-      <Info ref={dialogRef} />
-      <button onClick={openDialog}>
+      <Info open={isUserModalOpen} onClose={handleCloseModal} />
+      <button onClick={handleOpenModal}>
         <BsPersonCircle />
       </button>
     </>
