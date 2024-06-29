@@ -27,7 +27,7 @@ const Nav = () => {
         </Menu>
         <Menu
           onClick={() => {
-            navigate("product");
+            navigate("products");
             handleChangeTitle("Products");
           }}
         >

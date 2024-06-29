@@ -5,7 +5,6 @@ import Info from "./Info.tsx";
 
 const UserIcon = () => {
   const [isUserModalOpen, setIsUSerModalOpen] = useState(false);
-  console.log(isUserModalOpen);
   const handleOpenModal = () => {
     setIsUSerModalOpen(true);
   };

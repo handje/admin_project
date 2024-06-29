@@ -8,11 +8,9 @@ interface ModalProps {
 
 const Info = ({ open, onClose }: ModalProps) => {
   const dialog = useRef<HTMLDialogElement>(null);
-  console.log(open);
   useEffect(() => {
     if (open) {
       if (dialog.current === null) return;
-      console.log("open");
       dialog.current.showModal();
     } else {
       if (dialog.current === null) return;
