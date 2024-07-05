@@ -21,7 +21,7 @@ const Info = ({ open, onClose }: ModalProps) => {
   return (
     <dialog ref={dialog} onClose={onClose}>
       <Header>
-        <h2>User</h2>
+        <h2>Admin</h2>
         <button onClick={onClose}>X</button>
       </Header>
       <div>
@@ -30,6 +30,9 @@ const Info = ({ open, onClose }: ModalProps) => {
         <p>NUM : 000000000</p>
         <p>EMAIL : aaa@gamil.com</p>
       </div>
+      <ButtonContainer>
+        <button>logout</button>
+      </ButtonContainer>
     </dialog>
   );
 };
@@ -37,6 +40,17 @@ const Header = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: bold;
+`;
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  margin-top: 15px;
+  & > button {
+    font-weight: bold;
+  }
 `;
 export default Info;

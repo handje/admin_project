@@ -15,9 +15,10 @@ export const TitleContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [title, setTitle] = useState<string>("");
+  const [title, setTitle] = useState(localStorage.getItem("title") || "");
 
   const handleChangeTitle = (selected: string): void => {
+    localStorage.setItem("title", selected);
     setTitle(selected);
   };
 

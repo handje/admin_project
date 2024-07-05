@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import styled from "styled-components";
 
 import { Table } from "../common";
 import { Loading, NotFound } from "../../fallback";
@@ -49,6 +50,55 @@ const Customers = () => {
     return <NotFound />;
   }
 
-  return <>{isLoading ? <Loading /> : <Table data={customers} />}</>;
+  return (
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Table>
+          <Head>
+            <tr>
+              <th>Num</th>
+              <th>Name</th>
+              <th>UserName</th>
+              <th>Phone</th>
+            </tr>
+          </Head>
+          <Body>
+            {customers.map((info) => {
+              return (
+                <tr key={info.id}>
+                  <th>{info.id}</th>
+                  <td>
+                    {info.name.firstname},{info.name.lastname}
+                  </td>
+                  <td>{info.username}</td>
+                  <td>{info.phone}</td>
+                </tr>
+              );
+            })}
+          </Body>
+        </Table>
+      )}
+    </>
+  );
 };
 export default Customers;
+
+const Head = styled.thead`
+  line-height: 50px;
+  background: #42444e;
+  & > tr > th {
+    color: #fff;
+  }
+`;
+
+const Body = styled.tbody`
+  line-height: 20px;
+  & > tr > th,
+  td {
+    border-right: 1px solid #c6c9cc;
+    border-bottom: 1px solid #c6c9cc;
+    padding: 15px;
+  }
+`;

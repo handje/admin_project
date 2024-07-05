@@ -1,51 +1,9 @@
 import styled from "styled-components";
 
-type HeadOption = {
-  option: "products" | "customers";
-};
-interface HeadProps {
-  products: ["Num", "Title", "Price(USD)"];
-  customers: ["Num", "Name", "UserName", "Phone"];
-}
-interface DataProps {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  rating: { rate: number; count: number };
-  image: string;
-}
-
-const Table = ({
-  heading,
-  data,
-}: {
-  heading: HeadOption;
-  data: DataProps[];
-}) => {
+const Table = ({ children }: { children: React.ReactNode }) => {
   return (
     <TableContainer>
-      <StyledTable>
-        <Head>
-          <tr>
-            <th>Num</th>
-            {heading.customers.map((head) => (
-              <th>{head}</th>
-            ))}
-          </tr>
-        </Head>
-        <Body>
-          {data.map((info) => {
-            return (
-              <tr key={info.id}>
-                <th>{info.id}</th>
-                <td>{info.title}</td>
-                <td>{info.price}</td>
-              </tr>
-            );
-          })}
-        </Body>
-      </StyledTable>
+      <StyledTable>{children}</StyledTable>
     </TableContainer>
   );
 };
@@ -64,22 +22,4 @@ const StyledTable = styled.table`
   border: 2px solid black;
   letter-spacing: 1px;
   padding: 10px;
-`;
-
-const Head = styled.thead`
-  line-height: 50px;
-  background: #42444e;
-  & > tr > th {
-    color: #fff;
-  }
-`;
-
-const Body = styled.tbody`
-  line-height: 20px;
-  & > tr > th,
-  td {
-    border-right: 1px solid #c6c9cc;
-    border-bottom: 1px solid #c6c9cc;
-    padding: 15px;
-  }
 `;

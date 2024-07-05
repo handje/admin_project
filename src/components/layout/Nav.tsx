@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import {
   BsHouseDoorFill,
@@ -16,33 +16,38 @@ const Nav = () => {
   return (
     <NavContainer>
       <StyledNav>
-        <Menu
-          onClick={() => {
-            navigate("/");
-            handleChangeTitle("Home");
-          }}
-        >
-          <BsHouseDoorFill />
-          <p>Home</p>
-        </Menu>
-        <Menu
-          onClick={() => {
-            navigate("products");
-            handleChangeTitle("Products");
-          }}
-        >
-          <BsBagCheckFill />
-          <p>Products</p>
-        </Menu>
-        <Menu
-          onClick={() => {
-            navigate("customers");
-            handleChangeTitle("Customers");
-          }}
-        >
-          <BsFillFileEarmarkPersonFill />
-          <p>Customers</p>
-        </Menu>
+        <StyledLink to="/">
+          <Menu
+            onClick={() => {
+              handleChangeTitle("Home");
+            }}
+          >
+            <BsHouseDoorFill />
+            <p>Home</p>
+          </Menu>
+        </StyledLink>
+        <StyledLink to="/products">
+          <Menu
+            onClick={() => {
+              navigate("products");
+              handleChangeTitle("Products");
+            }}
+          >
+            <BsBagCheckFill />
+            <p>Products</p>
+          </Menu>
+        </StyledLink>
+        <StyledLink to="/customers">
+          <Menu
+            onClick={() => {
+              navigate("customers");
+              handleChangeTitle("Customers");
+            }}
+          >
+            <BsFillFileEarmarkPersonFill />
+            <p>Customers</p>
+          </Menu>
+        </StyledLink>
       </StyledNav>
     </NavContainer>
   );
@@ -64,7 +69,15 @@ const StyledNav = styled.nav`
   z-index: 10;
   border-right: solid var(--line-blue-color);
 `;
-const Menu = styled.button`
+const StyledLink = styled(NavLink)`
+  &:hover {
+    background-color: rgba(44, 130, 242, 0.5);
+  }
+  &.active {
+    background-color: var(--primary-blue-color);
+  }
+`;
+const Menu = styled.div`
   height: 48px;
   margin: 5px 10px 5px 0px;
   display: flex;
@@ -72,15 +85,9 @@ const Menu = styled.button`
   padding: 0 25px;
   font-size: 15px;
   transition: 0.3s;
-  border-radius: 0 24px 24px 0;
   & > p {
     padding-left: 5px;
   }
-  &:hover {
-    background-color: var(--secondary-blue-color);
-  }
-  &:active {
-    background-color: var(--primary-blue-color);
-  }
 `;
+
 export default Nav;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 
 import Table from "../common/Table";
 import { fetchAllProducts } from "../../util/http";
@@ -38,9 +39,50 @@ const Products = () => {
   }
   return (
     <>
-      {isLoading ? <Loading /> : <Table heading={option:"products"} data={products} />}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Table>
+          <Head>
+            <tr>
+              <th>Num</th>
+              <th>Title</th>
+              <th>Price</th>
+            </tr>
+          </Head>
+          <Body>
+            {products.map((info) => {
+              return (
+                <tr key={info.id}>
+                  <th>{info.id}</th>
+                  <td>{info.title}</td>
+                  <td>{info.price}</td>
+                </tr>
+              );
+            })}
+          </Body>
+        </Table>
+      )}
     </>
   );
 };
 
 export default Products;
+
+const Head = styled.thead`
+  line-height: 50px;
+  background: #42444e;
+  & > tr > th {
+    color: #fff;
+  }
+`;
+
+const Body = styled.tbody`
+  line-height: 20px;
+  & > tr > th,
+  td {
+    border-right: 1px solid #c6c9cc;
+    border-bottom: 1px solid #c6c9cc;
+    padding: 15px;
+  }
+`;
