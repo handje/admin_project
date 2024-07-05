@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 interface titleContext {
   title: string;
@@ -16,6 +16,10 @@ export const TitleContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [title, setTitle] = useState(localStorage.getItem("title") || "");
+
+  useEffect(() => {
+    localStorage.setItem("title", "Home");
+  }, []);
 
   const handleChangeTitle = (selected: string): void => {
     localStorage.setItem("title", selected);
