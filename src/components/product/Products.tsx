@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 
 import Table from "../common/Table";
 import { fetchAllProducts } from "../../util/http";
-import Loading from "../../fallback/Loading";
-import NotFound from "../../fallback/NotFound";
+import { Loading, NotFound } from "../../fallback";
 
 interface Product {
   id: number;
@@ -12,10 +11,6 @@ interface Product {
   price: number;
   rating: { rate: number; count: number };
   image: string;
-}
-
-interface Products {
-  products: Product[];
 }
 
 const Products = () => {
@@ -41,7 +36,11 @@ const Products = () => {
   if (isError) {
     return <NotFound />;
   }
-  return <>{isLoading ? <Loading /> : <Table data={products} />}</>;
+  return (
+    <>
+      {isLoading ? <Loading /> : <Table heading={option:"products"} data={products} />}
+    </>
+  );
 };
 
 export default Products;

@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+type HeadOption = {
+  option: "products" | "customers";
+};
+interface HeadProps {
+  products: ["Num", "Title", "Price(USD)"];
+  customers: ["Num", "Name", "UserName", "Phone"];
+}
 interface DataProps {
   id: number;
   title: string;
@@ -9,21 +16,28 @@ interface DataProps {
   image: string;
 }
 
-const Table = ({ data }: { data: DataProps[] }) => {
+const Table = ({
+  heading,
+  data,
+}: {
+  heading: HeadOption;
+  data: DataProps[];
+}) => {
   return (
     <TableContainer>
       <StyledTable>
         <Head>
           <tr>
             <th>Num</th>
-            <th>Title</th>
-            <th>Price(USD)</th>
+            {heading.customers.map((head) => (
+              <th>{head}</th>
+            ))}
           </tr>
         </Head>
         <Body>
           {data.map((info) => {
             return (
-              <tr>
+              <tr key={info.id}>
                 <th>{info.id}</th>
                 <td>{info.title}</td>
                 <td>{info.price}</td>
