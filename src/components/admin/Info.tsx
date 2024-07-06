@@ -1,5 +1,15 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+
+// localStorage.setItem(
+//   "login_admin",
+//   JSON.stringify({
+//     name: "admin",
+//     depart: "Dev",
+//     num: "DEV011",
+//     email: "admin@store.co.kr",
+//   })
+// );
 
 interface ModalProps {
   open: boolean;
@@ -8,6 +18,10 @@ interface ModalProps {
 
 const Info = ({ open, onClose }: ModalProps) => {
   const dialog = useRef<HTMLDialogElement>(null);
+
+  const admin = JSON.parse(localStorage.getItem("login_admin"));
+  const [loginAdmin, setLoginAdmin] = useState(admin);
+
   useEffect(() => {
     if (open) {
       if (dialog.current === null) return;
@@ -25,10 +39,10 @@ const Info = ({ open, onClose }: ModalProps) => {
         <button onClick={onClose}>X</button>
       </Header>
       <div>
-        <p>NAME : Admin</p>
-        <p>DEPT : DEV</p>
-        <p>NUM : 000000000</p>
-        <p>EMAIL : aaa@gamil.com</p>
+        <p>NAME : {loginAdmin.name}</p>
+        <p>DEPT : {loginAdmin.depart}</p>
+        <p>NUM : {loginAdmin.num}</p>
+        <p>EMAIL : {loginAdmin.email}</p>
       </div>
       <ButtonContainer>
         <button>logout</button>

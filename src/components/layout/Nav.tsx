@@ -82,7 +82,7 @@ const Menu = styled.div`
   margin: 5px 10px 5px 0px;
   display: flex;
   align-items: center;
-  padding: 0 25px;
+  padding: 0 20px;
   font-size: 15px;
   transition: 0.3s;
   & > p {

@@ -87,7 +87,7 @@ export default Customers;
 
 const Head = styled.thead`
   line-height: 50px;
-  background: #42444e;
+  background: var(--line-blue-color);
   & > tr > th {
     color: #fff;
   }
@@ -95,6 +95,9 @@ const Head = styled.thead`
 
 const Body = styled.tbody`
   line-height: 20px;
+  & > tr:hover {
+    background-color: rgba(44, 130, 242, 0.5);
+  }
   & > tr > th,
   td {
     border-right: 1px solid #c6c9cc;

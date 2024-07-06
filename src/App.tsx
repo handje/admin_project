@@ -1,4 +1,4 @@
-import { GlobalStyle } from "./shared/global";
+import { GlobalStyle } from "./styles/global";
 import { RouterProvider } from "react-router-dom";
 
 import { router } from "./router";

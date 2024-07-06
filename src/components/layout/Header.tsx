@@ -2,7 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { BsList } from "react-icons/bs";
 
-import { UserIcon } from "../user";
+import { UserIcon } from "../admin";
 import { TitleContext } from "../../store/TitleContext";
 
 const Header = ({ onNavOpen }: { onNavOpen: () => void }) => {
@@ -18,11 +18,9 @@ const Header = ({ onNavOpen }: { onNavOpen: () => void }) => {
       <SectionTitle>
         <h1>{title}</h1>
       </SectionTitle>
-      <IconContainer>
-        <Icons>
-          <UserIcon />
-        </Icons>
-      </IconContainer>
+      <Icons>
+        <UserIcon />
+      </Icons>
     </StyledHeader>
   );
 };
@@ -68,14 +66,12 @@ const SectionTitle = styled.div`
     font-size: 1.5rem;
   }
 `;
-const IconContainer = styled.div`
-  flex: auto;
-`;
 
 const Icons = styled.div`
+  flex: auto;
   font-size: 1.5rem;
   display: flex;
   justify-content: flex-end;
-  padding-right: 10px;
+  padding-right: 15px;
 `;
 export default Header;
