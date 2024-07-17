@@ -29,13 +29,13 @@ const TableContainer = styled.div`
   width: 100%;
   height: 95%;
   margin: auto;
+  overflow-y: auto;
 `;
 const StyledTable = styled.table`
   width: 100%;
-  height: 100%;
+  height: max-content;
   border: 2px solid var(--line-blue-color);
   letter-spacing: 1px;
-  padding: 10px;
 `;
 const Head = styled.thead`
   line-height: 50px;

@@ -1,7 +1,9 @@
+import { json } from "react-router-dom";
+
 const requestFetch = async (url: string, config: object) => {
   const response = await fetch(url, config);
   if (!response.ok) {
-    throw new Error("Failed to fetch data");
+    throw json({ message: "Failed to fetch data" }, { status: 500 });
   }
   const data = await response.json();
   return data;

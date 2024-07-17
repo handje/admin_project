@@ -1,4 +1,4 @@
 import Loading from "./Loading";
-import NotFound from "./NotFound";
+import Error from "./Error";
 
-export { Loading, NotFound };
+export { Loading, Error };

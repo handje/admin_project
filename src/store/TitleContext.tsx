@@ -17,10 +17,6 @@ export const TitleContextProvider = ({
 }) => {
   const [title, setTitle] = useState(localStorage.getItem("title") || "");
 
-  useEffect(() => {
-    localStorage.setItem("title", "Home");
-  }, []);
-
   const handleChangeTitle = (selected: string): void => {
     localStorage.setItem("title", selected);
     setTitle(selected);

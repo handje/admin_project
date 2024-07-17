@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useRouteLoaderData } from "react-router-dom";
 
 import Table from "../common/Table";
-import { fetchAllProducts } from "../../util/http";
-import { Loading, NotFound } from "../../fallback";
+import { TitleContext } from "../../store/TitleContext";
+import { Error, Loading } from "../../fallback";
 
 interface Product {
   id: number;
@@ -17,7 +17,10 @@ interface Product {
 const ProductsList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [products, setProducts] = useState<Product[]>([]);
+  const products: Product[] = useRouteLoaderData("products");
+  const { handleChangeTitle } = useContext(TitleContext);
+  const admin = localStorage.getItem("login_admin");
+  const navigate = useNavigate();
 
   const header = ["Num", "Title", "Price"];
   const renderRow = (data) => {
@@ -31,23 +34,17 @@ const ProductsList = () => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
-    const fetchProducts = async () => {
-      try {
-        const data = await fetchAllProducts();
-        setProducts(data);
-        setIsLoading(false);
-      } catch (err) {
-        setIsLoading(false);
-        setIsError(true);
-      }
-    };
-    fetchProducts();
+    if (!admin) {
+      navigate("/login");
+    } else {
+      handleChangeTitle("Products");
+    }
   }, []);
 
   if (isError) {
-    return <NotFound />;
+    return <Error />;
   }
+
   return (
     <>
       {isLoading ? (

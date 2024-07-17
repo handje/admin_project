@@ -9,20 +9,23 @@ import {
   Customers,
   CustomerDetail,
 } from "../pages";
-import NotFound from "../fallback/NotFound";
+import { Error } from "../fallback";
+import { fetchAllProducts, fetchAllCustomersInfo } from "../util/http";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement: <NotFound />,
+    errorElement: <Error />,
     children: [
       {
         index: true,
         element: <Home />,
       },
       {
+        id: "products",
         path: "products",
+        loader: fetchAllProducts,
         children: [
           {
             index: true,
@@ -35,7 +38,9 @@ export const router = createBrowserRouter([
         ],
       },
       {
+        id: "customers",
         path: "customers",
+        loader: fetchAllCustomersInfo,
         children: [
           {
             index: true,
@@ -52,5 +57,9 @@ export const router = createBrowserRouter([
         element: <Login />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);

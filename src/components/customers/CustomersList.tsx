@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import styled from "styled-components";
+import { useNavigate, useRouteLoaderData } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 
 import { Table } from "../common";
-import { Loading, NotFound } from "../../fallback";
-import { fetchAllCustomersInfo } from "../../util/http";
+import { TitleContext } from "../../store/TitleContext";
+import { Error, Loading } from "../../fallback";
 
 interface Address {
   city: string;
@@ -29,7 +29,10 @@ interface Customer {
 const CustomersList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [customers, setCustomers] = useState<Customer[]>([]);
+  const customers: Customer[] = useRouteLoaderData("customers");
+  const { handleChangeTitle } = useContext(TitleContext);
+  const admin = localStorage.getItem("login_admin");
+  const navigate = useNavigate();
 
   const header = ["Num", "Name", "UserName", "Phone"];
   const renderRow = (data) => {
@@ -46,22 +49,15 @@ const CustomersList = () => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
-    const fetchCustomers = async () => {
-      try {
-        const data = await fetchAllCustomersInfo();
-        setCustomers(data);
-        setIsLoading(false);
-      } catch (err) {
-        setIsLoading(false);
-        setIsError(true);
-      }
-    };
-    fetchCustomers();
+    if (!admin) {
+      navigate("/login");
+    } else {
+      handleChangeTitle("Customers");
+    }
   }, []);
 
   if (isError) {
-    return <NotFound />;
+    return <Error />;
   }
   return (
     <>
