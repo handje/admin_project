@@ -1,5 +1,6 @@
-import loading from "../asset/loading.gif";
 import styled from "styled-components";
+
+import loading from "../assets/loading.gif";
 
 const Loading = () => {
   return (

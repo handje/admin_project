@@ -1,9 +1,8 @@
 import { useNavigate, useRouteLoaderData } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 
 import { Table } from "../common";
 import { TitleContext } from "../../store/TitleContext";
-import { Error, Loading } from "../../fallback";
 
 interface Address {
   city: string;
@@ -27,15 +26,13 @@ interface Customer {
 }
 
 const CustomersList = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const customers: Customer[] = useRouteLoaderData("customers");
+  const navigate = useNavigate();
+  const customers = useRouteLoaderData("customers") as Customer[];
   const { handleChangeTitle } = useContext(TitleContext);
   const admin = localStorage.getItem("login_admin");
-  const navigate = useNavigate();
 
   const header = ["Num", "Name", "UserName", "Phone"];
-  const renderRow = (data) => {
+  const renderRow = (data: Customer) => {
     return (
       <tr key={data.id}>
         <th>{data.id}</th>
@@ -56,17 +53,6 @@ const CustomersList = () => {
     }
   }, []);
 
-  if (isError) {
-    return <Error />;
-  }
-  return (
-    <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <Table header={header} data={customers} renderRow={renderRow} />
-      )}
-    </>
-  );
+  return <Table header={header} data={customers} renderRow={renderRow} />;
 };
 export default CustomersList;

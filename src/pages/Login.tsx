@@ -1,12 +1,21 @@
-import styled from "styled-components";
-import { Input } from "../components/common";
 import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
+import { Input } from "../components/common";
 import { TitleContext } from "../store/TitleContext";
 
 const Login = () => {
   const { handleChangeTitle } = useContext(TitleContext);
+  const admin = localStorage.getItem("login_admin");
+  const navigate = useNavigate();
+
   useEffect(() => {
-    handleChangeTitle("Login");
+    if (admin) {
+      navigate("/");
+    } else {
+      handleChangeTitle("Login");
+    }
   }, []);
   return (
     <CustomLogin>

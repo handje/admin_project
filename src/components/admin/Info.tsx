@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 // {"name":"admin","depart":"Dev","num":"DEV011","email":"admin@store.co.kr"}
@@ -8,12 +9,25 @@ interface ModalProps {
   onClose: () => void;
 }
 
+interface Admin {
+  name: string;
+  depart: string;
+  num: string;
+  email: string;
+}
+
 const Info = ({ open, onClose }: ModalProps) => {
+  const navigate = useNavigate();
   const dialog = useRef<HTMLDialogElement>(null);
-  const admin = localStorage.getItem("login_admin")
-    ? JSON.parse(localStorage.getItem("login_admin"))
-    : null;
-  const [loginAdmin, setLoginAdmin] = useState(admin);
+
+  const admin = localStorage.getItem("login_admin");
+  const [loginAdmin, setLoginAdmin] = useState<Admin | undefined>();
+
+  useEffect(() => {
+    if (admin) {
+      setLoginAdmin(JSON.parse(admin));
+    }
+  }, []);
 
   useEffect(() => {
     if (open) {
@@ -26,28 +40,34 @@ const Info = ({ open, onClose }: ModalProps) => {
   }, [open]);
 
   const handleLogout = () => {
-    console.log("logout");
+    onClose();
+    localStorage.removeItem("login_admin");
+    navigate("/login");
   };
 
   return (
     <>
-      {loginAdmin && (
-        <dialog ref={dialog} onClose={onClose}>
-          <Header>
-            <h2>Admin</h2>
-            <button onClick={onClose}>X</button>
-          </Header>
-          <div>
-            <p>NAME : {loginAdmin.name}</p>
-            <p>DEPT : {loginAdmin.depart}</p>
-            <p>NUM : {loginAdmin.num}</p>
-            <p>EMAIL : {loginAdmin.email}</p>
-          </div>
-          <ButtonContainer>
-            <button onClick={handleLogout}>logout</button>
-          </ButtonContainer>
-        </dialog>
-      )}
+      <dialog ref={dialog} onClose={onClose}>
+        <Header>
+          <h2>Admin</h2>
+          <button onClick={onClose}>X</button>
+        </Header>
+        <div>
+          {loginAdmin ? (
+            <>
+              <p>NAME : {loginAdmin.name}</p>
+              <p>DEPT : {loginAdmin.depart}</p>
+              <p>NUM : {loginAdmin.num}</p>
+              <p>EMAIL : {loginAdmin.email}</p>
+            </>
+          ) : (
+            <p>no data</p>
+          )}
+        </div>
+        <ButtonContainer>
+          <button onClick={handleLogout}>logout</button>
+        </ButtonContainer>
+      </dialog>
     </>
   );
 };
