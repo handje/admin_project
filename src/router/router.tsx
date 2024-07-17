@@ -1,15 +1,21 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import { Layout } from "../components/layout";
-import { Home } from "../components/home";
-import { Products } from "../components/product";
-import { Customers } from "../components/customers";
+import {
+  Login,
+  Home,
+  Products,
+  ProductDetail,
+  Customers,
+  CustomerDetail,
+} from "../pages";
 import NotFound from "../fallback/NotFound";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    errorElement: <NotFound />,
     children: [
       {
         index: true,
@@ -17,13 +23,34 @@ export const router = createBrowserRouter([
       },
       {
         path: "products",
-        element: <Products />,
+        children: [
+          {
+            index: true,
+            element: <Products />,
+          },
+          {
+            path: ":id",
+            element: <ProductDetail />,
+          },
+        ],
       },
       {
         path: "customers",
-        element: <Customers />,
+        children: [
+          {
+            index: true,
+            element: <Customers />,
+          },
+          {
+            path: ":id",
+            element: <CustomerDetail />,
+          },
+        ],
+      },
+      {
+        path: "login",
+        element: <Login />,
       },
     ],
-    errorElement: <NotFound />,
   },
 ]);

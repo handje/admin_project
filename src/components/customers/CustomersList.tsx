@@ -26,10 +26,24 @@ interface Customer {
   phone: string;
 }
 
-const Customers = () => {
+const CustomersList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [customers, setCustomers] = useState<Customer[]>([]);
+
+  const header = ["Num", "Name", "UserName", "Phone"];
+  const renderRow = (data) => {
+    return (
+      <tr key={data.id}>
+        <th>{data.id}</th>
+        <td>
+          {data.name.firstname},{data.name.lastname}
+        </td>
+        <td>{data.username}</td>
+        <td>{data.phone}</td>
+      </tr>
+    );
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -49,59 +63,14 @@ const Customers = () => {
   if (isError) {
     return <NotFound />;
   }
-
   return (
     <>
       {isLoading ? (
         <Loading />
       ) : (
-        <Table>
-          <Head>
-            <tr>
-              <th>Num</th>
-              <th>Name</th>
-              <th>UserName</th>
-              <th>Phone</th>
-            </tr>
-          </Head>
-          <Body>
-            {customers.map((info) => {
-              return (
-                <tr key={info.id}>
-                  <th>{info.id}</th>
-                  <td>
-                    {info.name.firstname},{info.name.lastname}
-                  </td>
-                  <td>{info.username}</td>
-                  <td>{info.phone}</td>
-                </tr>
-              );
-            })}
-          </Body>
-        </Table>
+        <Table header={header} data={customers} renderRow={renderRow} />
       )}
     </>
   );
 };
-export default Customers;
-
-const Head = styled.thead`
-  line-height: 50px;
-  background: var(--line-blue-color);
-  & > tr > th {
-    color: #fff;
-  }
-`;
-
-const Body = styled.tbody`
-  line-height: 20px;
-  & > tr:hover {
-    background-color: rgba(44, 130, 242, 0.5);
-  }
-  & > tr > th,
-  td {
-    border-right: 1px solid #c6c9cc;
-    border-bottom: 1px solid #c6c9cc;
-    padding: 15px;
-  }
-`;
+export default CustomersList;

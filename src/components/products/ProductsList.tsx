@@ -14,10 +14,21 @@ interface Product {
   image: string;
 }
 
-const Products = () => {
+const ProductsList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
+
+  const header = ["Num", "Title", "Price"];
+  const renderRow = (data) => {
+    return (
+      <tr key={data.id}>
+        <th>{data.id}</th>
+        <td>{data.title}</td>
+        <td>{data.price}</td>
+      </tr>
+    );
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -42,50 +53,9 @@ const Products = () => {
       {isLoading ? (
         <Loading />
       ) : (
-        <Table>
-          <Head>
-            <tr>
-              <th>Num</th>
-              <th>Title</th>
-              <th>Price</th>
-            </tr>
-          </Head>
-          <Body>
-            {products.map((info) => {
-              return (
-                <tr key={info.id}>
-                  <th>{info.id}</th>
-                  <td>{info.title}</td>
-                  <td>{info.price}</td>
-                </tr>
-              );
-            })}
-          </Body>
-        </Table>
+        <Table header={header} data={products} renderRow={renderRow} />
       )}
     </>
   );
 };
-
-export default Products;
-
-const Head = styled.thead`
-  line-height: 50px;
-  background: var(--line-blue-color);
-  & > tr > th {
-    color: #fff;
-  }
-`;
-
-const Body = styled.tbody`
-  line-height: 20px;
-  & > tr:hover {
-    background-color: rgba(44, 130, 242, 0.5);
-  }
-  & > tr > th,
-  td {
-    border-right: 1px solid #c6c9cc;
-    border-bottom: 1px solid #c6c9cc;
-    padding: 15px;
-  }
-`;
+export default ProductsList;

@@ -1,3 +1,5 @@
-import Home from "./Home";
+import Count from "./Count";
+import Charts from "./Charts";
+import List from "./List";
 
-export { Home };
+export { Count, Charts, List };

@@ -1,6 +1,5 @@
 import Card from "./Card";
-import Button from "./Button";
-import IconButton from "./IconButton";
 import Table from "./Table";
+import Input from "./Input";
 
-export { Card, Button, IconButton, Table };
+export { Card, Table, Input };
