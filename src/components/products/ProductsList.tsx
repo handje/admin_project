@@ -1,8 +1,8 @@
-import { useContext, useEffect } from "react";
-import { useNavigate, useRouteLoaderData } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import Table from "../common/Table";
-import { TitleContext } from "../../store/TitleContext";
+import { fetchAllProducts } from "../../util/http";
+import { Loading, Error } from "../../fallback";
 
 interface Product {
   id: number;
@@ -14,30 +14,36 @@ interface Product {
 }
 
 const ProductsList = () => {
-  const navigate = useNavigate();
-  const products = useRouteLoaderData("products") as Product[];
-  const { handleChangeTitle } = useContext(TitleContext);
-  const admin = localStorage.getItem("login_admin");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [products, setProducts] = useState<Product[]>([]);
 
-  const header = ["Num", "Title", "Price"];
-  const renderRow = (data: Product) => {
-    return (
-      <tr key={data.id}>
-        <th>{data.id}</th>
-        <td>{data.title}</td>
-        <td>{data.price}</td>
-      </tr>
-    );
-  };
+  const headers = [
+    { text: "Num", value: "id" },
+    { text: "Title", value: "title" },
+    { text: "Price", value: "price" },
+  ];
 
   useEffect(() => {
-    if (!admin) {
-      navigate("/login");
-    } else {
-      handleChangeTitle("Products");
-    }
+    setIsLoading(true);
+    const fetchProducts = async () => {
+      try {
+        const data = await fetchAllProducts();
+        setProducts(data);
+        setIsLoading(false);
+      } catch (err) {
+        setIsLoading(false);
+        setIsError(true);
+      }
+    };
+    fetchProducts();
   }, []);
 
-  return <Table header={header} data={products} renderRow={renderRow} />;
+  if (isError) {
+    return <Error />;
+  }
+  return (
+    <>{isLoading ? <Loading /> : <Table headers={headers} data={products} />}</>
+  );
 };
 export default ProductsList;

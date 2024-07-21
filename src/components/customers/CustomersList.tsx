@@ -1,8 +1,8 @@
-import { useNavigate, useRouteLoaderData } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { Table } from "../common";
-import { TitleContext } from "../../store/TitleContext";
+import { Loading, Error } from "../../fallback";
+import { fetchAllCustomersInfo } from "../../util/http";
 
 interface Address {
   city: string;
@@ -23,36 +23,48 @@ interface Customer {
   };
   address: Address;
   phone: string;
+  fullname?: string;
 }
 
 const CustomersList = () => {
-  const navigate = useNavigate();
-  const customers = useRouteLoaderData("customers") as Customer[];
-  const { handleChangeTitle } = useContext(TitleContext);
-  const admin = localStorage.getItem("login_admin");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [customers, setCustomers] = useState<Customer[]>([]);
 
-  const header = ["Num", "Name", "UserName", "Phone"];
-  const renderRow = (data: Customer) => {
-    return (
-      <tr key={data.id}>
-        <th>{data.id}</th>
-        <td>
-          {data.name.firstname},{data.name.lastname}
-        </td>
-        <td>{data.username}</td>
-        <td>{data.phone}</td>
-      </tr>
-    );
-  };
+  const headers = [
+    { text: "Num", value: "id" },
+    { text: "Name", value: "fullname" },
+    { text: "UserName", value: "username" },
+    { text: "Phone", value: "phone" },
+  ];
 
   useEffect(() => {
-    if (!admin) {
-      navigate("/login");
-    } else {
-      handleChangeTitle("Customers");
-    }
+    setIsLoading(true);
+    const fetchCustomers = async () => {
+      try {
+        const data = await fetchAllCustomersInfo();
+        const customersData = data?.map((customer: Customer) => {
+          const fullname = `${customer.name.firstname}, ${customer.name.lastname}`;
+          return { ...customer, fullname: fullname };
+        });
+        setCustomers(customersData);
+        setIsLoading(false);
+      } catch (err) {
+        setIsLoading(false);
+        setIsError(true);
+      }
+    };
+    fetchCustomers();
   }, []);
 
-  return <Table header={header} data={customers} renderRow={renderRow} />;
+  if (isError) {
+    return <Error />;
+  }
+
+  return (
+    <>
+      {isLoading ? <Loading /> : <Table headers={headers} data={customers} />}
+    </>
+  );
 };
 export default CustomersList;

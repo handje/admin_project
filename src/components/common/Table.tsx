@@ -1,23 +1,40 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+type rowDataType = Record<string, string>;
+
 interface TableProps<T> {
-  header: string[];
+  headers: { text: string; value: string }[];
   data: T[];
-  renderRow: (item: T) => React.ReactNode;
 }
 
-const Table = <T,>({ header, data, renderRow }: TableProps<T>) => {
+const Table = <T,>({ headers, data }: TableProps<T>) => {
+  const navigate = useNavigate();
+  const handleRowClick = (rowData: rowDataType) => {
+    navigate(`${rowData.id}`);
+  };
+  console.log(data);
   return (
     <TableContainer>
       <StyledTable>
         <Head>
           <tr>
-            {header?.map((head, idx) => (
-              <th key={idx}>{head}</th>
+            {headers?.map((header) => (
+              <th key={header.text}>{header.text}</th>
             ))}
           </tr>
         </Head>
-        <Body>{data?.map((rowData) => renderRow(rowData))}</Body>
+        <Body>
+          {data?.map((rowData, idx) => {
+            return (
+              <tr key={idx} onClick={() => handleRowClick(rowData)}>
+                {headers.map((key) => (
+                  <td key={key.value}>{rowData[key.value]}</td>
+                ))}
+              </tr>
+            );
+          })}
+        </Body>
       </StyledTable>
     </TableContainer>
   );
@@ -48,6 +65,7 @@ const Body = styled.tbody`
   line-height: 20px;
   & > tr:hover {
     background-color: rgba(44, 130, 242, 0.5);
+    cursor: pointer;
   }
   & > tr > th,
   td {

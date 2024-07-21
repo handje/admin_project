@@ -25,7 +25,6 @@ export const router = createBrowserRouter([
       {
         id: "products",
         path: "products",
-        loader: fetchAllProducts,
         children: [
           {
             index: true,
@@ -40,7 +39,6 @@ export const router = createBrowserRouter([
       {
         id: "customers",
         path: "customers",
-        loader: fetchAllCustomersInfo,
         children: [
           {
             index: true,
@@ -52,10 +50,10 @@ export const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "/login",
+        element: <Login />,
+      },
     ],
-  },
-  {
-    path: "/login",
-    element: <Login />,
   },
 ]);

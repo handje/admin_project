@@ -13,8 +13,29 @@ export const fetchAllProducts = async () => {
   const resData = await requestFetch("https://fakestoreapi.com/products", {});
   return resData;
 };
+export const fetchProductItem = async (id: string) => {
+  const resData = await requestFetch(
+    `https://fakestoreapi.com/products/${id}`,
+    {}
+  );
+  return resData;
+};
 
 export const fetchAllCustomersInfo = async () => {
   const resData = await requestFetch("https://fakestoreapi.com/users", {});
+  return resData;
+};
+export const fetchCustomerItem = async (id: string) => {
+  const resData = await requestFetch(
+    `https://fakestoreapi.com/users/${id}`,
+    {}
+  );
+  return resData;
+};
+export const fetchCustomerCartItem = async (id: string) => {
+  const resData = await requestFetch(
+    `https://fakestoreapi.com/carts/user/${id}`,
+    {}
+  );
   return resData;
 };
