@@ -10,9 +10,9 @@ const Header = ({ onNavOpen }: { onNavOpen: () => void }) => {
   return (
     <StyledHeader>
       <LeftHeader>
-        <>
-          <NavIcon onClick={onNavOpen} />
-        </>
+        <button onClick={onNavOpen}>
+          <BsList />
+        </button>
         <h1>AUTHORIZED</h1>
       </LeftHeader>
       <SectionTitle>
@@ -52,12 +52,8 @@ const LeftHeader = styled.div`
   }
   & > button {
     padding-top: 10px;
+    font-size: 2rem;
   }
-`;
-
-const NavIcon = styled(BsList)`
-  font-size: 2rem;
-  cursor: pointer;
 `;
 
 const SectionTitle = styled.div`

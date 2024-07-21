@@ -10,7 +10,8 @@ import {
   CustomerDetail,
 } from "../pages";
 import { Error } from "../fallback";
-import { fetchAllProducts, fetchAllCustomersInfo } from "../util/http";
+import { loginAction } from "../util/actions";
+import { checkAuthLoader } from "../util/loaders";
 
 export const router = createBrowserRouter([
   {
@@ -21,10 +22,12 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+        loader: checkAuthLoader,
       },
       {
         id: "products",
         path: "products",
+        loader: checkAuthLoader,
         children: [
           {
             index: true,
@@ -39,6 +42,7 @@ export const router = createBrowserRouter([
       {
         id: "customers",
         path: "customers",
+        loader: checkAuthLoader,
         children: [
           {
             index: true,
@@ -53,6 +57,7 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+        action: loginAction,
       },
     ],
   },

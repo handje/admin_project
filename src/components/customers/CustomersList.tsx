@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import { Table } from "../common";
 import { Loading, Error } from "../../fallback";
-import { fetchAllCustomersInfo } from "../../util/http";
+import { fetchAllCustomersInfo } from "../../util/fetchData";
 
 interface Address {
   city: string;

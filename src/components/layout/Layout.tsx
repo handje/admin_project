@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Outlet, useNavigation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Outlet, useNavigation } from "react-router-dom";
 import styled from "styled-components";
 
 import Header from "./Header";
@@ -8,25 +8,20 @@ import { Loading } from "../../fallback";
 
 const Layout = () => {
   const [isNavOpen, setIsNavOpen] = useState(true);
-  const navigate = useNavigate();
   const navigation = useNavigation();
-  const admin = localStorage.getItem("login_admin");
+  const token = localStorage.getItem("token");
 
   const handleNavOpen = () => {
-    setIsNavOpen(!isNavOpen);
-  };
-
-  useEffect(() => {
-    if (!admin) {
-      navigate("/login");
+    if (token) {
+      setIsNavOpen(!isNavOpen);
     }
-  }, []);
+  };
 
   return (
     <>
       <Container>
         <Header onNavOpen={handleNavOpen} />
-        {isNavOpen ? <Nav /> : null}
+        {isNavOpen && token ? <Nav /> : null}
         <Content>
           {navigation.state === "loading" ? <Loading /> : <Outlet />}
         </Content>

@@ -1,5 +1,6 @@
 import { json } from "react-router-dom";
 
+//util
 const requestFetch = async (url: string, config: object) => {
   const response = await fetch(url, config);
   if (!response.ok) {
@@ -9,6 +10,7 @@ const requestFetch = async (url: string, config: object) => {
   return data;
 };
 
+//products
 export const fetchAllProducts = async () => {
   const resData = await requestFetch("https://fakestoreapi.com/products", {});
   return resData;
@@ -21,6 +23,7 @@ export const fetchProductItem = async (id: string) => {
   return resData;
 };
 
+//customers
 export const fetchAllCustomersInfo = async () => {
   const resData = await requestFetch("https://fakestoreapi.com/users", {});
   return resData;

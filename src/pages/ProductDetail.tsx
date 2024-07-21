@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { ProductItem } from "../components/products";
-import { fetchProductItem } from "../util/http";
+import { fetchProductItem } from "../util/fetchData";
 import { Loading } from "../fallback";
 
 interface Product {

@@ -13,7 +13,6 @@ const Table = <T,>({ headers, data }: TableProps<T>) => {
   const handleRowClick = (rowData: rowDataType) => {
     navigate(`${rowData.id}`);
   };
-  console.log(data);
   return (
     <TableContainer>
       <StyledTable>

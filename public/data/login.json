@@ -1,0 +1,28 @@
+{
+  "admin": [
+    {
+      "email": "admin@shop.co.kr",
+      "password": "admin",
+      "role": "admin",
+      "name": "admin",
+      "depart": "dev",
+      "num": "dev123"
+    },
+    {
+      "email": "manager@shop.co.kr",
+      "password": "manager",
+      "role": "manager",
+      "name": "manager",
+      "depart": "cs",
+      "num": "cs123"
+    },
+    {
+      "email": "staff@shop.co.kr",
+      "password": "staff",
+      "role": "staff",
+      "name": "staff",
+      "depart": "marketing",
+      "num": "mar123"
+    }
+  ]
+}

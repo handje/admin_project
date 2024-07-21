@@ -1,0 +1,22 @@
+{
+  "role": {
+    "admin": {
+      "view": true,
+      "add": true,
+      "edit": true,
+      "users": true
+    },
+    "manager": {
+      "view": true,
+      "add": true,
+      "edit": true,
+      "users": false
+    },
+    "staff": {
+      "view": true,
+      "add": false,
+      "edit": false,
+      "users": false
+    }
+  }
+}

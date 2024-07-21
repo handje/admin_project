@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import Table from "../common/Table";
-import { fetchAllProducts } from "../../util/http";
+import { fetchAllProducts } from "../../util/fetchData";
 import { Loading, Error } from "../../fallback";
 
 interface Product {
