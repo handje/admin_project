@@ -5,32 +5,41 @@ interface InputProps {
   id: string;
   name: string;
   type?: string;
+  correct: boolean;
 }
-const Input = ({ title, id, name, type }: InputProps) => {
+const Input = ({ title, id, name, type, correct }: InputProps) => {
   return (
-    <CustomInput>
+    <Container>
       <label htmlFor={id}>{title}</label>
-      <input id={id} name={name} type={type} required />
-    </CustomInput>
+      <CustomInput
+        id={id}
+        name={name}
+        type={type}
+        required
+        $correct={correct}
+      />
+    </Container>
   );
 };
 
-const CustomInput = styled.div`
+const Container = styled.div`
   width: 100%;
   display: flex;
   justify-content: end;
   align-items: center;
   margin-bottom: 30px;
   font-size: 30px;
-  & > input {
-    outline: none;
-    width: 300px;
-    height: 50px;
-    margin-left: 10px;
-    padding: 5px;
-    border: 3px solid var(--line-blue-color);
-    font-size: 25px;
-  }
 `;
 
+const CustomInput = styled.input<{ $correct: boolean }>`
+  outline: none;
+  width: 300px;
+  height: 50px;
+  margin-left: 10px;
+  padding: 5px;
+  border: 3px solid var(--line-blue-color);
+  font-size: 25px;
+  border: 3px solid
+    ${(props) => (props.$correct ? "var(--line-blue-color)" : "red")};
+`;
 export default Input;

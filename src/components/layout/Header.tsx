@@ -1,12 +1,20 @@
-import { useContext } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { BsList } from "react-icons/bs";
 
 import { UserIcon } from "../admin";
-import { TitleContext } from "../../store/TitleContext";
 
 const Header = ({ onNavOpen }: { onNavOpen: () => void }) => {
-  const { title } = useContext(TitleContext);
+  const path = useLocation().pathname.split("/")[1];
+  const [title, setTitle] = useState("");
+
+  useEffect(() => {
+    setTitle(() => {
+      return path.length > 0 ? path.toUpperCase() : "HOME";
+    });
+  }, [path]);
+
   return (
     <StyledHeader>
       <LeftHeader>

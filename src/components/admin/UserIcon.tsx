@@ -5,7 +5,9 @@ import Info from "./Info.tsx";
 
 const UserIcon = () => {
   const [isUserModalOpen, setIsUSerModalOpen] = useState(false);
-  const admin = localStorage.getItem("login_admin");
+
+  const admin = localStorage.getItem("token");
+  const loginedInfo = admin ? JSON.parse(admin) : undefined;
 
   const handleOpenModal = () => {
     setIsUSerModalOpen(true);
@@ -16,7 +18,11 @@ const UserIcon = () => {
   };
   return (
     <>
-      <Info open={isUserModalOpen} onClose={handleCloseModal} />
+      <Info
+        open={isUserModalOpen}
+        onClose={handleCloseModal}
+        loginedInfo={loginedInfo}
+      />
       <button onClick={handleOpenModal} disabled={!admin}>
         <BsPersonCircle />
       </button>

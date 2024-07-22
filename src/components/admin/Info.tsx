@@ -1,14 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 // {"name":"admin","depart":"Dev","num":"DEV011","email":"admin@store.co.kr"}
-
-interface ModalProps {
-  open: boolean;
-  onClose: () => void;
-}
-
 interface Admin {
   name: string;
   depart: string;
@@ -16,18 +10,15 @@ interface Admin {
   email: string;
 }
 
-const Info = ({ open, onClose }: ModalProps) => {
+interface ModalProps {
+  open: boolean;
+  onClose: () => void;
+  loginedInfo?: Admin;
+}
+
+const Info = ({ open, onClose, loginedInfo }: ModalProps) => {
   const navigate = useNavigate();
   const dialog = useRef<HTMLDialogElement>(null);
-
-  const admin = localStorage.getItem("login_admin");
-  const [loginAdmin, setLoginAdmin] = useState<Admin | undefined>();
-
-  useEffect(() => {
-    if (admin) {
-      setLoginAdmin(JSON.parse(admin));
-    }
-  }, []);
 
   useEffect(() => {
     if (open) {
@@ -41,7 +32,7 @@ const Info = ({ open, onClose }: ModalProps) => {
 
   const handleLogout = () => {
     onClose();
-    localStorage.removeItem("login_admin");
+    localStorage.removeItem("token");
     navigate("/login");
   };
 
@@ -53,12 +44,12 @@ const Info = ({ open, onClose }: ModalProps) => {
           <button onClick={onClose}>X</button>
         </Header>
         <div>
-          {loginAdmin ? (
+          {loginedInfo ? (
             <>
-              <p>NAME : {loginAdmin.name}</p>
-              <p>DEPT : {loginAdmin.depart}</p>
-              <p>NUM : {loginAdmin.num}</p>
-              <p>EMAIL : {loginAdmin.email}</p>
+              <p>NAME : {loginedInfo.name}</p>
+              <p>DEPT : {loginedInfo.depart}</p>
+              <p>NUM : {loginedInfo.num}</p>
+              <p>EMAIL : {loginedInfo.email}</p>
             </>
           ) : (
             <p>no data</p>

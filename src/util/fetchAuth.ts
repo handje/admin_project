@@ -28,7 +28,7 @@ export const fetchAuth = async (authData: AuthForm) => {
       name: isAuth[0].name,
       depart: isAuth[0].depart,
       num: isAuth[0].num,
-      emial: isAuth[0].email,
+      email: isAuth[0].email,
     };
     return json({ message: "Login Success", token: info }, { status: 200 });
   }

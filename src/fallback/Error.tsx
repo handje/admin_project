@@ -1,7 +1,7 @@
 import { useRouteError } from "react-router-dom";
 
 interface CustomError {
-  state: number;
+  status: number;
   data: { message: string };
 }
 
@@ -10,11 +10,12 @@ const Error = () => {
   let message = "Something went wrong!";
   const error = useRouteError() as CustomError;
   console.log(error);
-  if (error.state === 404) {
+
+  if (error.status === 404) {
     title = "Page not found";
     message = "The page you are looking for does not exist.";
   }
-  if (error.state === 500) {
+  if (error.status === 500) {
     title = "Internal server error";
     message = error.data.message;
   }

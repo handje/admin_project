@@ -9,9 +9,21 @@ const LoginForm = () => {
   return (
     <CustomLogin>
       <Form method="post">
-        {error?.message}
-        <Input title="EMAIL" id="email" name="email" type="email" />
-        <Input title="PWD" id="password" name="password" type="password" />
+        <Error>{error?.message}</Error>
+        <Input
+          title="EMAIL"
+          id="email"
+          name="email"
+          type="email"
+          correct={!error}
+        />
+        <Input
+          title="PWD"
+          id="password"
+          name="password"
+          type="password"
+          correct={!error}
+        />
         <ButtonContainer>
           <button>OK</button>
         </ButtonContainer>
@@ -41,4 +53,9 @@ const ButtonContainer = styled.div`
   font-size: 30px;
 `;
 
+const Error = styled.p`
+  text-align: end;
+  color: red;
+  margin-bottom: 10px;
+`;
 export default LoginForm;
