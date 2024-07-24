@@ -39,7 +39,7 @@ body,
 body {
 	line-height: 1;
 	overflow: hidden;
-	color:${({ theme }) => theme.colors.darkBlue900}
+	color:${({ theme }) => theme.colors.darkBlue700}
 }
 ol, ul {
 	list-style: none;

@@ -53,10 +53,7 @@ const Nav = () => {
   );
 };
 const NavContainer = styled.div`
-  display: flex;
-  flex-direction: column;
   width: 150px;
-  padding-top: 64px;
   margin-right: 30px;
 `;
 const StyledNav = styled.nav`
@@ -68,6 +65,7 @@ const StyledNav = styled.nav`
   width: 150px;
   z-index: 10;
   border: 3px solid ${({ theme }) => theme.colors.border300};
+  background-color: #fff;
 `;
 const StyledLink = styled(NavLink)`
   &:hover {

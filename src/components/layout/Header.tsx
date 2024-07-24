@@ -44,8 +44,6 @@ const StyledHeader = styled.header`
   flex-direction: row;
   align-items: center;
   border-bottom: 3px solid ${({ theme }) => theme.colors.border300};
-  @media ${({ theme }) => theme.mediaSize.xl} {
-  }
 `;
 
 const LeftHeader = styled.div`
@@ -61,8 +59,15 @@ const LeftHeader = styled.div`
     font-weight: 600;
   }
   & > button {
-    padding-top: 10px;
+    padding-left: 5px;
+    padding-top: 5px;
     font-size: 2rem;
+  }
+  @media ${({ theme }) => theme.mediaSize.md} {
+    width: 40px;
+    & > h1 {
+      visibility: hidden;
+    }
   }
 `;
 
@@ -70,6 +75,9 @@ const SectionTitle = styled.div`
   padding-left: 35px;
   & > h1 {
     font-size: 1.5rem;
+  }
+  @media ${({ theme }) => theme.mediaSize.md} {
+    padding-left: 10px;
   }
 `;
 

@@ -40,6 +40,9 @@ const Title = styled.h1`
 
 const Info = styled.div`
   display: flex;
+  @media ${({ theme }) => theme.mediaSize.md} {
+    flex-direction: column;
+  }
 `;
 
 const Image = styled.div`

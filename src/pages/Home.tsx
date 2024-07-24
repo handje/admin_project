@@ -27,22 +27,25 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: start;
-  flex-wrap: wrap;
   padding: 20px;
+  @media ${({ theme }) => theme.mediaSize.md} {
+    flex-direction: column;
+    overflow-y: auto;
+  }
 `;
-const CountContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-`;
-
 const Wrapper = styled.div`
-  width: 45%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: start;
   margin-right: 15px;
+  margin-top: 10px;
+`;
+const CountContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 `;

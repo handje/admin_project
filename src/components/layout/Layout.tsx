@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, useNavigation } from "react-router-dom";
 import styled from "styled-components";
 
@@ -7,7 +7,13 @@ import Nav from "./Nav";
 import { Loading } from "../../fallback";
 
 const Layout = () => {
-  const [isNavOpen, setIsNavOpen] = useState(true);
+  const [isNavOpen, setIsNavOpen] = useState(() => {
+    if (window.matchMedia("(max-width: 576px)").matches) {
+      return false;
+    } else {
+      return true;
+    }
+  });
   const navigation = useNavigation();
   const token = localStorage.getItem("token");
 
