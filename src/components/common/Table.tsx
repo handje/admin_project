@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 type rowDataType = Record<string, string>;
 
@@ -16,24 +16,24 @@ const Table = <T,>({ headers, data }: TableProps<T>) => {
   return (
     <TableContainer>
       <StyledTable>
-        <Head>
+        <thead>
           <tr>
             {headers?.map((header) => (
-              <th key={header.text}>{header.text}</th>
+              <TableHeaderCell key={header.text}>{header.text}</TableHeaderCell>
             ))}
           </tr>
-        </Head>
-        <Body>
+        </thead>
+        <tbody>
           {data?.map((rowData, idx) => {
             return (
-              <tr key={idx} onClick={() => handleRowClick(rowData)}>
+              <TableRow key={idx} onClick={() => handleRowClick(rowData)}>
                 {headers.map((key) => (
-                  <td key={key.value}>{rowData[key.value]}</td>
+                  <TableCell key={key.value}>{rowData[key.value]}</TableCell>
                 ))}
-              </tr>
+              </TableRow>
             );
           })}
-        </Body>
+        </tbody>
       </StyledTable>
     </TableContainer>
   );
@@ -42,34 +42,39 @@ const Table = <T,>({ headers, data }: TableProps<T>) => {
 export default Table;
 
 const TableContainer = styled.div`
-  width: 100%;
-  height: 95%;
+  width: 95%;
+  height: 90%;
   margin: auto;
   overflow-y: auto;
+  ${({ theme }) => theme.util.scroll(theme.colors.darkBlue400)}
 `;
 const StyledTable = styled.table`
   width: 100%;
-  height: max-content;
-  border: 2px solid var(--line-blue-color);
-  letter-spacing: 1px;
-`;
-const Head = styled.thead`
-  line-height: 50px;
-  background: var(--line-blue-color);
-  & > tr > th {
-    color: #fff;
+  border-collapse: collapse;
+  letter-spacing: 0.5px;
+  & > thead {
+    background-color: ${({ theme }) => theme.colors.darkBlue400};
   }
 `;
-const Body = styled.tbody`
-  line-height: 20px;
-  & > tr:hover {
-    background-color: rgba(44, 130, 242, 0.5);
-    cursor: pointer;
+const TableRow = styled.tr`
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.darkBlue100};
   }
-  & > tr > th,
-  td {
-    border-right: 1px solid #c6c9cc;
-    border-bottom: 1px solid #c6c9cc;
-    padding: 15px;
+`;
+const cellStyles = css`
+  padding: 15px 15px;
+  border: 1px solid ${({ theme }) => theme.colors.darkBlue300};
+`;
+const TableHeaderCell = styled.th`
+  ${cellStyles}
+  text-align: center;
+  font-size: large;
+  font-weight: 500;
+`;
+const TableCell = styled.td`
+  ${cellStyles}
+  &:first-child {
+    text-align: center;
   }
+  cursor: pointer;
 `;

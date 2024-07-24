@@ -1,17 +1,9 @@
 import { useEffect, useState } from "react";
 
 import Table from "../common/Table";
-import { fetchAllProducts } from "../../util/fetchData";
 import { Loading, Error } from "../../fallback";
-
-interface Product {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  rating: { rate: number; count: number };
-  image: string;
-}
+import { fetchAllProducts } from "../../util/fetchData";
+import { Product } from "../../util/interfaces";
 
 const ProductsList = () => {
   const [isLoading, setIsLoading] = useState(false);

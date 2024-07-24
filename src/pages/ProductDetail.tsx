@@ -2,18 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { ProductItem } from "../components/products";
-import { fetchProductItem } from "../util/fetchData";
 import { Loading } from "../fallback";
-
-interface Product {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  rating: { rate: number; count: number };
-  image: string;
-  category: string;
-}
+import { fetchProductItem } from "../util/fetchData";
+import { Product } from "../util/interfaces";
 
 const ProductDetail = () => {
   const [product, setProduct] = useState<Product>();

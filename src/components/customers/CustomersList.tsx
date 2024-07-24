@@ -3,28 +3,7 @@ import { useState, useEffect } from "react";
 import { Table } from "../common";
 import { Loading, Error } from "../../fallback";
 import { fetchAllCustomersInfo } from "../../util/fetchData";
-
-interface Address {
-  city: string;
-  street: string;
-  number: number;
-  zipcode: string;
-  geolocation: { lat: string; long: string };
-}
-
-interface Customer {
-  id: number;
-  email: string;
-  username: string;
-  password: string;
-  name: {
-    firstname: string;
-    lastname: string;
-  };
-  address: Address;
-  phone: string;
-  fullname?: string;
-}
+import { Customer } from "../../util/interfaces";
 
 const CustomersList = () => {
   const [isLoading, setIsLoading] = useState(false);

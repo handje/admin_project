@@ -2,19 +2,7 @@ import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-// {"name":"admin","depart":"Dev","num":"DEV011","email":"admin@store.co.kr"}
-interface Admin {
-  name: string;
-  depart: string;
-  num: string;
-  email: string;
-}
-
-interface ModalProps {
-  open: boolean;
-  onClose: () => void;
-  loginedInfo?: Admin;
-}
+import { ModalProps } from "../../util/interfaces";
 
 const Info = ({ open, onClose, loginedInfo }: ModalProps) => {
   const navigate = useNavigate();

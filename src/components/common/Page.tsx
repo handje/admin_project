@@ -5,7 +5,7 @@ const Page = ({ id, children }: { id: number; children: React.ReactNode }) => {
   const navigate = useNavigate();
   return (
     <Container>
-      <Nav>
+      <Header>
         <p>{id}</p>
         <button
           onClick={() => {
@@ -14,7 +14,7 @@ const Page = ({ id, children }: { id: number; children: React.ReactNode }) => {
         >
           X
         </button>
-      </Nav>
+      </Header>
       <Content>{children}</Content>
     </Container>
   );
@@ -24,22 +24,24 @@ export default Page;
 const Container = styled.article`
   width: 95%;
   height: 90%;
-  overflow-y: auto;
   margin: auto;
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
   & > p {
     font-size: 20px;
   }
+  border: 1px solid ${({ theme }) => theme.colors.darkBlue500};
+  overflow-y: auto;
+  ${({ theme }) => theme.util.scroll(theme.colors.darkBlue500)}
 `;
 
-const Nav = styled.div`
+const Header = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 30px;
   padding: 10px;
-  background-color: antiquewhite;
+  ${({ theme }) => `background-color:${theme.colors.content.headerBg};
+  color:${theme.colors.content.headerTxt}`};
 `;
 
 const Content = styled.div`

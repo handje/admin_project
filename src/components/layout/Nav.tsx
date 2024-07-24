@@ -67,14 +67,15 @@ const StyledNav = styled.nav`
   top: 64px;
   width: 150px;
   z-index: 10;
-  border-right: solid var(--line-blue-color);
+  border: 3px solid ${({ theme }) => theme.colors.border300};
 `;
 const StyledLink = styled(NavLink)`
   &:hover {
-    background-color: rgba(44, 130, 242, 0.5);
+    background-color: ${({ theme }) => theme.colors.hover};
   }
   &.active {
-    background-color: var(--primary-blue-color);
+    background-color: ${({ theme }) => theme.colors.darkBlue300};
+    color: #fff;
   }
 `;
 const Menu = styled.div`

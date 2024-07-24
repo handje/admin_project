@@ -1,17 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-    :root {
-        --primary-blue-color: #3071f2;
-        --secondary-blue-color: #2E83F2;
-        --line-blue-color: #79baf2;
-
-        --font-size-title: 4rem;
-        --font-size-large: 2.8rem;
-        --font-size-medium: 2.2rem;
-        --font-size-small: 2rem;
-        --font-size-primary: 1.6rem;
-    }
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -50,6 +39,7 @@ body,
 body {
 	line-height: 1;
 	overflow: hidden;
+	color:${({ theme }) => theme.colors.darkBlue900}
 }
 ol, ul {
 	list-style: none;

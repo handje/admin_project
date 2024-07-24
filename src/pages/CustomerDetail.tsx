@@ -4,35 +4,7 @@ import { useParams } from "react-router-dom";
 import { CustomerItem } from "../components/customers";
 import { fetchCustomerCartItem, fetchCustomerItem } from "../util/fetchData";
 import { Loading } from "../fallback";
-
-interface Address {
-  city: string;
-  street: string;
-  number: number;
-  zipcode: string;
-  geolocation: { lat: string; long: string };
-}
-
-interface Customer {
-  id: number;
-  email: string;
-  username: string;
-  password: string;
-  name: {
-    firstname: string;
-    lastname: string;
-  };
-  address: Address;
-  phone: string;
-  fullname?: string;
-}
-
-interface Order {
-  id: number;
-  userId: number;
-  date: string;
-  products: { productId: number; quantity: number }[];
-}
+import { Customer, Order } from "../util/interfaces";
 
 const CustomerDetail = () => {
   const [customer, setCustomer] = useState<Customer>();

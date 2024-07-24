@@ -43,11 +43,13 @@ const StyledHeader = styled.header`
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-bottom: solid var(--line-blue-color);
+  border-bottom: 3px solid ${({ theme }) => theme.colors.border300};
+  @media ${({ theme }) => theme.mediaSize.xl} {
+  }
 `;
 
 const LeftHeader = styled.div`
-  border-right: solid var(--line-blue-color);
+  border-right: 3px solid ${({ theme }) => theme.colors.border300};
   height: 50px;
   width: 300px;
   display: flex;
@@ -74,6 +76,7 @@ const SectionTitle = styled.div`
 const Icons = styled.div`
   flex: auto;
   font-size: 1.5rem;
+  color: ${({ theme }) => theme.colors.darkBlue900};
   display: flex;
   justify-content: flex-end;
   padding-right: 15px;

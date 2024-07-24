@@ -1,14 +1,7 @@
 import styled from "styled-components";
 import Page from "../common/Page";
-interface Product {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  rating: { rate: number; count: number };
-  image: string;
-  category: string;
-}
+import { Product } from "../../util/interfaces";
+
 const ProductItem = ({ product }: { product: Product }) => {
   return (
     <Page id={product.id}>
@@ -50,7 +43,7 @@ const Info = styled.div`
 `;
 
 const Image = styled.div`
-  border: 1px solid black;
+  border: 1px solid ${({ theme }) => theme.colors.border100};
   text-align: center;
   flex: 1;
   & > img {
@@ -63,7 +56,7 @@ const Image = styled.div`
 const ButtonContainer = styled.menu`
   display: flex;
   justify-content: end;
-  color: blue;
+  color: ${({ theme }) => theme.colors.darkBlue500};
   font-size: 20px;
   margin-bottom: 10px;
 `;

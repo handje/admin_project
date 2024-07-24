@@ -7,6 +7,7 @@ interface InputProps {
   type?: string;
   correct: boolean;
 }
+
 const Input = ({ title, id, name, type, correct }: InputProps) => {
   return (
     <Container>
@@ -37,9 +38,10 @@ const CustomInput = styled.input<{ $correct: boolean }>`
   height: 50px;
   margin-left: 10px;
   padding: 5px;
-  border: 3px solid var(--line-blue-color);
   font-size: 25px;
+  color:${({ theme }) => theme.colors.textColor}
   border: 3px solid
-    ${(props) => (props.$correct ? "var(--line-blue-color)" : "red")};
+    ${({ $correct, theme }) =>
+      $correct ? theme.colors.input.border : theme.colors.warning};
 `;
 export default Input;

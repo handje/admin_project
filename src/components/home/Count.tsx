@@ -9,7 +9,7 @@ export default Count;
 const CountBox = styled.div`
   width: 45%;
   height: 100px;
-  border: 2px solid var(--line-blue-color);
+  border: 2px solid ${({ theme }) => theme.colors.border100};
   display: flex;
   justify-content: center;
   align-items: center;

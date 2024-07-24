@@ -1,14 +1,17 @@
 import { Table } from "../../components/common";
 
 const List = ({ title }: { title: string }) => {
-  const header = ["Num", "Name", "UserName", "Phone"];
-  const renderRow = () => {
-    return <></>;
-  };
+  const headers = [
+    { text: "Num", value: "id" },
+    { text: "Name", value: "fullname" },
+    { text: "UserName", value: "username" },
+    { text: "Phone", value: "phone" },
+  ];
+
   return (
     <>
       <h2>{title}</h2>
-      <Table header={header} data={[]} renderRow={renderRow} />
+      <Table headers={headers} data={[]} />
     </>
   );
 };

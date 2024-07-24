@@ -25,7 +25,7 @@ const LoginForm = () => {
           correct={!error}
         />
         <ButtonContainer>
-          <button>OK</button>
+          <CustomButton>OK</CustomButton>
         </ButtonContainer>
       </Form>
     </CustomLogin>
@@ -38,11 +38,6 @@ const CustomLogin = styled.div`
   justify-content: center;
   align-items: start;
   margin: auto;
-  & > h1 {
-    font-size: 30px;
-    font-weight: 200;
-    margin-bottom: 20px;
-  }
 `;
 
 const ButtonContainer = styled.div`
@@ -51,6 +46,19 @@ const ButtonContainer = styled.div`
   justify-content: end;
   align-items: end;
   font-size: 30px;
+`;
+
+const CustomButton = styled.button`
+  padding: 10px 20px;
+  border-radius: 50%;
+  ${({ theme }) => {
+    return `background-color:${theme.colors.button.bgColor};
+    color:${theme.colors.button.textColor}`;
+  }};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.button.hover};
+  }
 `;
 
 const Error = styled.p`
