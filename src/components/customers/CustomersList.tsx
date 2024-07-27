@@ -22,6 +22,7 @@ const CustomersList = () => {
     const fetchCustomers = async () => {
       try {
         const data = await fetchAllCustomersInfo();
+        console.log(data);
         const customersData = data?.map((customer: Customer) => {
           const fullname = `${customer.name.firstname}, ${customer.name.lastname}`;
           return { ...customer, fullname: fullname };

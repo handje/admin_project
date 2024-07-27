@@ -42,7 +42,7 @@ const Table = <T,>({ headers, data }: TableProps<T>) => {
 export default Table;
 
 const TableContainer = styled.div`
-  width: 95%;
+  width: 100%;
   height: 90%;
   margin: auto;
   overflow-y: auto;

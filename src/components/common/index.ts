@@ -1,5 +1,5 @@
-import Card from "./Card";
+import Chart from "./Chart";
 import Table from "./Table";
 import Input from "./Input";
 
-export { Card, Table, Input };
+export { Chart, Table, Input };

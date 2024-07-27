@@ -1,20 +1,50 @@
 import styled from "styled-components";
 
 import { Count, Charts, List } from "../components/home";
+import { useEffect, useState } from "react";
+import {
+  fetchAllCarts,
+  fetchAllCustomersInfo,
+  fetchAllProducts,
+} from "../util/fetchData";
 
 const Home = () => {
+  const [usersCount, setUsersCount] = useState(0);
+  const [products, setProducts] = useState([]);
+  const [carts, setCarts] = useState([]);
+
+  useEffect(() => {
+    const fetchAllData = async () => {
+      try {
+        const users = await fetchAllCustomersInfo();
+        const products = await fetchAllProducts();
+        const carts = await fetchAllCarts();
+        setUsersCount(users.length);
+        setProducts(
+          products.map((prod) => ({
+            id: prod.id,
+            title: prod.title,
+            category: prod.category,
+          }))
+        );
+        setCarts(carts);
+      } catch (err) {
+        throw new Error();
+      }
+    };
+    fetchAllData();
+  }, []);
+
   return (
     <Container>
       <Wrapper>
         <CountContainer>
-          <Count>가입자수 : 10</Count>
-          <Count>총 상품수 : 10</Count>
+          <Count>가입자 : {usersCount}</Count>
+          <Count>총 상품 : {products?.length}</Count>
         </CountContainer>
-        <List title="최근 로그인한 유저" />
+        <List title="최근 주문 내역" data={carts} />
       </Wrapper>
-      <Wrapper>
-        <Charts />
-      </Wrapper>
+      <Charts products={products} carts={carts} />
     </Container>
   );
 };
@@ -34,12 +64,12 @@ const Container = styled.div`
   }
 `;
 const Wrapper = styled.div`
-  width: 100%;
+  width: 50%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: start;
+  justify-content: flex-start;
+  align-items: flex-start;
   margin-right: 15px;
   margin-top: 10px;
 `;

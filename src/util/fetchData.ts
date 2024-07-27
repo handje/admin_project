@@ -35,6 +35,13 @@ export const fetchCustomerItem = async (id: string) => {
   );
   return resData;
 };
+
+//carts
+export const fetchAllCarts = async () => {
+  const resData = await requestFetch("https://fakestoreapi.com/carts", {});
+  return resData;
+};
+
 export const fetchCustomerCartItem = async (id: string) => {
   const resData = await requestFetch(
     `https://fakestoreapi.com/carts/user/${id}`,
