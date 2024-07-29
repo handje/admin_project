@@ -1,8 +1,15 @@
-import styled from "styled-components";
+import { styled } from "styled-components";
 
-import { Chart } from "../common";
+import { DoughnutChart, BarChart } from "../common";
+import { Product, Order } from "../../util/interfaces";
 
-const Charts = ({ products, carts }) => {
+const Charts = ({
+  products,
+  carts,
+}: {
+  products: Product[];
+  carts: Order[];
+}) => {
   const countProducts = new Map();
   products.forEach((product) => {
     if (countProducts.has(product.category)) {
@@ -14,36 +21,49 @@ const Charts = ({ products, carts }) => {
       countProducts.set(product.category, 1);
     }
   });
+
   const countCarts = new Map();
   carts.forEach((cart) => {
     cart.products.forEach((prod) => {
-      if (countCarts.has(prod.productId)) {
+      if (countCarts.has(`${prod.productId}`)) {
         countCarts.set(
-          prod.productId,
-          countCarts.get(prod.productId) + prod.quantity
+          `${prod.productId}`,
+          countCarts.get(`${prod.productId}`) + prod.quantity
         );
       } else {
-        countCarts.set(prod.productId, prod.quantity);
+        countCarts.set(`${prod.productId}`, prod.quantity);
       }
     });
   });
+  const productsRank = Array.from(countCarts).sort(
+    (prod1, prod2) => prod2[1] - prod1[1]
+  );
 
   return (
-    <Wrapper>
-      <Chart title="카테고리별 상품 수" propsData={countProducts}></Chart>
-      <Chart title="상품 판매 순위" propsData={countCarts}></Chart>
-    </Wrapper>
+    <>
+      <ChartContainer>
+        <DoughnutChart
+          title="카테고리별 상품 수"
+          propsData={Array.from(countProducts)}
+        ></DoughnutChart>
+      </ChartContainer>
+      <ChartContainer>
+        <BarChart
+          title="상품 판매 순위"
+          label="판매 수"
+          propsData={productsRank.splice(0, 7)}
+        ></BarChart>
+      </ChartContainer>
+    </>
   );
 };
 
 export default Charts;
-const Wrapper = styled.div`
-  width: 50%;
-  height: 90%;
+const ChartContainer = styled.div`
+  width: 100%;
+  height: 50%;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-end;
-  margin-right: 15px;
-  margin-top: 10px;
+  justify-content: center;
+  border: 2px solid ${({ theme }) => theme.colors.border300};
+  margin-bottom: 5px;
 `;

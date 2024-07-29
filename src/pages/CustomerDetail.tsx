@@ -25,9 +25,10 @@ const CustomerDetail = () => {
     };
     fetchData();
   }, [id]);
+
   return (
     <>
-      {customer ? (
+      {customer && orderList ? (
         <CustomerItem customer={customer} orderList={orderList} />
       ) : (
         <Loading />

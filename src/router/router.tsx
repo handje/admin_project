@@ -11,12 +11,14 @@ import {
 } from "../pages";
 import { Error } from "../fallback";
 import { loginAction } from "../util/actions";
-import { checkAuthLoader } from "../util/loaders";
+import { checkAuthLoader, rootLoader } from "../util/loaders";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    id: "root",
+    loader: rootLoader,
     errorElement: <Error />,
     children: [
       {

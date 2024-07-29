@@ -1,50 +1,29 @@
 import styled from "styled-components";
 
 import { Count, Charts, List } from "../components/home";
-import { useEffect, useState } from "react";
-import {
-  fetchAllCarts,
-  fetchAllCustomersInfo,
-  fetchAllProducts,
-} from "../util/fetchData";
+
+import { useRouteLoaderData } from "react-router-dom";
+import { Customer, Order, Product } from "../util/interfaces";
 
 const Home = () => {
-  const [usersCount, setUsersCount] = useState(0);
-  const [products, setProducts] = useState([]);
-  const [carts, setCarts] = useState([]);
-
-  useEffect(() => {
-    const fetchAllData = async () => {
-      try {
-        const users = await fetchAllCustomersInfo();
-        const products = await fetchAllProducts();
-        const carts = await fetchAllCarts();
-        setUsersCount(users.length);
-        setProducts(
-          products.map((prod) => ({
-            id: prod.id,
-            title: prod.title,
-            category: prod.category,
-          }))
-        );
-        setCarts(carts);
-      } catch (err) {
-        throw new Error();
-      }
-    };
-    fetchAllData();
-  }, []);
+  const { products, customers, carts } = useRouteLoaderData("root") as {
+    products: Product[];
+    customers: Customer[];
+    carts: Order[];
+  };
 
   return (
     <Container>
       <Wrapper>
         <CountContainer>
-          <Count>가입자 : {usersCount}</Count>
+          <Count>가입자 : {customers?.length}</Count>
           <Count>총 상품 : {products?.length}</Count>
         </CountContainer>
         <List title="최근 주문 내역" data={carts} />
       </Wrapper>
-      <Charts products={products} carts={carts} />
+      <Wrapper>
+        <Charts products={products} carts={carts} />
+      </Wrapper>
     </Container>
   );
 };
@@ -72,6 +51,9 @@ const Wrapper = styled.div`
   align-items: flex-start;
   margin-right: 15px;
   margin-top: 10px;
+  @media ${({ theme }) => theme.mediaSize.md} {
+    width: 100%;
+  }
 `;
 const CountContainer = styled.div`
   width: 100%;

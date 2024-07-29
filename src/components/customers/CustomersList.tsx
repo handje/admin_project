@@ -1,14 +1,12 @@
-import { useState, useEffect } from "react";
-
 import { Table } from "../common";
-import { Loading, Error } from "../../fallback";
-import { fetchAllCustomersInfo } from "../../util/fetchData";
-import { Customer } from "../../util/interfaces";
 
-const CustomersList = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [customers, setCustomers] = useState<Customer[]>([]);
+const CustomersList = ({ loadedCustomer }) => {
+  const customers = loadedCustomer.map((loadedCustomer) => {
+    return {
+      ...loadedCustomer,
+      fullname: `${loadedCustomer.name.firstname}, ${loadedCustomer.name.lastname}`,
+    };
+  });
 
   const headers = [
     { text: "Num", value: "id" },
@@ -16,35 +14,6 @@ const CustomersList = () => {
     { text: "UserName", value: "username" },
     { text: "Phone", value: "phone" },
   ];
-
-  useEffect(() => {
-    setIsLoading(true);
-    const fetchCustomers = async () => {
-      try {
-        const data = await fetchAllCustomersInfo();
-        console.log(data);
-        const customersData = data?.map((customer: Customer) => {
-          const fullname = `${customer.name.firstname}, ${customer.name.lastname}`;
-          return { ...customer, fullname: fullname };
-        });
-        setCustomers(customersData);
-        setIsLoading(false);
-      } catch (err) {
-        setIsLoading(false);
-        setIsError(true);
-      }
-    };
-    fetchCustomers();
-  }, []);
-
-  if (isError) {
-    return <Error />;
-  }
-
-  return (
-    <>
-      {isLoading ? <Loading /> : <Table headers={headers} data={customers} />}
-    </>
-  );
+  return <Table headers={headers} data={customers} />;
 };
 export default CustomersList;
