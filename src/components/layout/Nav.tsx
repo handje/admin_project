@@ -5,6 +5,7 @@ import {
   BsHouseDoorFill,
   BsFillFileEarmarkPersonFill,
   BsBagCheckFill,
+  BsCartCheckFill,
 } from "react-icons/bs";
 
 import { TitleContext } from "../../store/TitleContext";
@@ -46,6 +47,17 @@ const Nav = () => {
           >
             <BsFillFileEarmarkPersonFill />
             <p>Customers</p>
+          </Menu>
+        </StyledLink>
+        <StyledLink to="/carts">
+          <Menu
+            onClick={() => {
+              navigate("carts");
+              handleChangeTitle("Carts");
+            }}
+          >
+            <BsCartCheckFill />
+            <p>Carts</p>
           </Menu>
         </StyledLink>
       </StyledNav>

@@ -14,6 +14,6 @@ const CustomersList = ({ loadedCustomer }) => {
     { text: "UserName", value: "username" },
     { text: "Phone", value: "phone" },
   ];
-  return <Table headers={headers} data={customers} />;
+  return <Table headers={headers} data={customers} pathname="customers" />;
 };
 export default CustomersList;

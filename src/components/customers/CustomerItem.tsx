@@ -40,7 +40,7 @@ const CustomerItem = ({
         </li>
         <li>
           <Attributes>ORDER</Attributes>
-          <Table headers={headers} data={orderList} />
+          <Table headers={headers} data={orderList} pathname="carts" />
         </li>
       </InfoList>
     </Page>

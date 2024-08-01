@@ -1,17 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-type rowDataType = Record<string, string>;
-
 interface TableProps<T> {
   headers: { text: string; value: string }[];
   data: T[];
+  pathname: string;
 }
 
-const Table = <T,>({ headers, data }: TableProps<T>) => {
+const Table = <T,>({ headers, data, pathname }: TableProps<T>) => {
   const navigate = useNavigate();
-  const handleRowClick = (rowData: rowDataType) => {
-    navigate(`${rowData.id}`);
+  const handleRowClick = (rowData: T) => {
+    navigate(`/${pathname}/${rowData.id}`);
   };
   return (
     <TableContainer>

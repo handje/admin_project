@@ -8,6 +8,6 @@ const ProductsList = ({ products }: { products: Product[] }) => {
     { text: "Price", value: "price" },
   ];
 
-  return <Table headers={headers} data={products} />;
+  return <Table headers={headers} data={products} pathname="products" />;
 };
 export default ProductsList;

@@ -8,6 +8,8 @@ import {
   ProductDetail,
   Customers,
   CustomerDetail,
+  Carts,
+  CartDetail,
 } from "../pages";
 import { Error } from "../fallback";
 import { loginAction } from "../util/actions";
@@ -53,6 +55,21 @@ export const router = createBrowserRouter([
           {
             path: ":id",
             element: <CustomerDetail />,
+          },
+        ],
+      },
+      {
+        id: "carts",
+        path: "carts",
+        loader: checkAuthLoader,
+        children: [
+          {
+            index: true,
+            element: <Carts />,
+          },
+          {
+            path: ":id",
+            element: <CartDetail />,
           },
         ],
       },

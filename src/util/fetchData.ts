@@ -49,3 +49,11 @@ export const fetchCustomerCartItem = async (id: string) => {
   );
   return resData;
 };
+
+export const fetchCartItem = async (id: string) => {
+  const resData = await requestFetch(
+    `https://fakestoreapi.com/carts/${id}`,
+    {}
+  );
+  return resData;
+};
