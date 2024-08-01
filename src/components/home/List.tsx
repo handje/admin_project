@@ -18,7 +18,7 @@ const List = ({ title, data }: { title: string; data: Order[] }) => {
   return (
     <>
       <h2>{title}</h2>
-      <Table headers={headers} data={carts} />
+      <Table headers={headers} data={carts} pathname="carts" />
     </>
   );
 };
