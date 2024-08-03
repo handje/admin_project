@@ -1,19 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { BsArrowLeft } from "react-icons/bs";
 
-const Page = ({ id, children }: { id: number; children: React.ReactNode }) => {
+const Page = ({ id, children }: { id?: number; children: React.ReactNode }) => {
   const navigate = useNavigate();
   return (
     <Container>
       <Header>
-        <p>{id}</p>
         <button
           onClick={() => {
             navigate("..");
           }}
         >
-          X
+          <BsArrowLeft />
         </button>
+        <p>{id}</p>
       </Header>
       <Content>{children}</Content>
     </Container>
@@ -23,15 +24,14 @@ export default Page;
 
 const Container = styled.article`
   width: 95%;
-  height: 90%;
-  margin: auto;
+  height: fit-content;
+  margin: 20px 10px;
   display: flex;
   flex-direction: column;
   & > p {
     font-size: 20px;
   }
   border: 1px solid ${({ theme }) => theme.colors.darkBlue500};
-  overflow-y: auto;
   ${({ theme }) => theme.util.scroll(theme.colors.darkBlue500)}
 `;
 

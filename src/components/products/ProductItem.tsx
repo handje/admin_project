@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import Page from "../common/Page";
 import { Product } from "../../util/interfaces";
+import { Link } from "react-router-dom";
 
 const ProductItem = ({ product }: { product: Product }) => {
   return (
     <Page id={product.id}>
       <Title>{product.title}</Title>
       <ButtonContainer>
-        <button>edit</button>
+        <Link to="edit">edit</Link>
       </ButtonContainer>
       <Info>
         <Image>
@@ -21,7 +22,7 @@ const ProductItem = ({ product }: { product: Product }) => {
             <Attributes>PRICE</Attributes> : {product.price}
           </li>
           <li>
-            <Attributes>RATE</Attributes> : {product.rating.rate}
+            <Attributes>RATE</Attributes> : {product.rating?.rate}
           </li>
           <li>
             <Attributes>DESCRIPTION</Attributes> : {product.description}
@@ -50,8 +51,8 @@ const Image = styled.div`
   text-align: center;
   flex: 1;
   & > img {
-    width: 100%;
-    height: 100%;
+    width: 95%;
+    height: 400px;
     object-fit: contain;
   }
 `;
@@ -59,9 +60,11 @@ const Image = styled.div`
 const ButtonContainer = styled.menu`
   display: flex;
   justify-content: end;
-  color: ${({ theme }) => theme.colors.darkBlue500};
-  font-size: 20px;
   margin-bottom: 10px;
+  & > a {
+    color: ${({ theme }) => theme.colors.darkBlue500};
+    font-size: 20px;
+  }
 `;
 
 const Property = styled.ul`

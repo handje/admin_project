@@ -10,6 +10,8 @@ import {
   CustomerDetail,
   Carts,
   CartDetail,
+  EditProductPage,
+  NewProductPage,
 } from "../pages";
 import { Error } from "../fallback";
 import { loginAction } from "../util/actions";
@@ -39,7 +41,20 @@ export const router = createBrowserRouter([
           },
           {
             path: ":id",
-            element: <ProductDetail />,
+            children: [
+              {
+                index: true,
+                element: <ProductDetail />,
+              },
+              {
+                path: "edit",
+                element: <EditProductPage />,
+              },
+            ],
+          },
+          {
+            path: "new",
+            element: <NewProductPage />,
           },
         ],
       },

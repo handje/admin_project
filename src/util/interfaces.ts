@@ -44,7 +44,7 @@ export interface Product {
   title: string;
   description: string;
   price: number;
-  rating: { rate: number; count: number };
+  rating?: { rate: number; count: number };
   image: string;
   category: string;
 }
