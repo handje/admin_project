@@ -1,61 +1,88 @@
+import { useState, useEffect } from "react";
 import { Form } from "react-router-dom";
 import { styled } from "styled-components";
 
 import { Product } from "../../util/interfaces";
 import { Page } from "../common";
 import FormInput from "./FormInput";
+import { fetchAllCategory } from "../../util/fetchData";
 
-const allCategory = [
-  "electronics",
-  "jewelery",
-  "men's clothing",
-  "women's clothing",
-];
-const ProductForm = ({ product }: { product?: Product }) => {
+type Method = "post" | "patch";
+
+const ProductForm = ({
+  product,
+  method,
+}: {
+  product?: Product;
+  method: Method;
+}) => {
+  const [categoryList, setCategoryList] = useState<string[]>([]);
+  const [category, setCategory] = useState<string>("");
+  const [imgUrl, setImgUrl] = useState<string>("");
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const list = await fetchAllCategory();
+        setCategoryList(list);
+      } catch (err) {
+        throw new Error();
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    setCategory(product?.category || "");
+    setImgUrl(product?.image || "");
+  }, [product]);
+
   return (
     <Page id={product?.id}>
-      <StyledForm>
+      <StyledForm method={method}>
         <FormInput
           id="name"
-          name="name"
+          name="title"
           type="text"
           defaultValue={product?.title ?? ""}
         />
         <Container>
           <Image>
             <ImageBox>
-              <img src={product?.image} alt="image preview" />
+              <img src={imgUrl} alt="image preview" />
             </ImageBox>
             <FormInput
               id="image"
               name="image"
               defaultValue={product?.image ?? ""}
+              onChange={(e) => setImgUrl(e.target.value)}
             />
           </Image>
           <Content>
-            <FormInput
-              id="category"
-              name="category"
-              defaultValue={product?.category ?? ""}
-            >
+            <FormInput id="category" name="category">
               <select
                 name="category"
                 id="category"
                 required
-                defaultValue={product?.category ?? ""}
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
               >
-                {allCategory.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
+                <option value="1">Select Categroy</option>
+                {categoryList?.map((item) => {
+                  return (
+                    <option key={item} value={item}>
+                      {item}
+                    </option>
+                  );
+                })}
+                <option value="2">second</option>
               </select>
             </FormInput>
             <FormInput
               id="price"
               name="price"
               type="number"
-              defaultValue={product?.price ?? ""}
+              defaultValue={product?.price}
+              step={0.1}
             />
             <Wrapper>
               <label htmlFor="description">DESCRIPTION</label>

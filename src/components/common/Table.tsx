@@ -42,13 +42,14 @@ export default Table;
 
 const TableContainer = styled.div`
   width: 100%;
-  height: 90%;
-  margin: auto;
+  height: 75%;
+  margin: 10px auto;
   overflow-y: auto;
   ${({ theme }) => theme.util.scroll(theme.colors.darkBlue400)}
 `;
 const StyledTable = styled.table`
   width: 100%;
+  padding: 5px 0px;
   border-collapse: collapse;
   letter-spacing: 0.5px;
   & > thead {

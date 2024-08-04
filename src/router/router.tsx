@@ -14,7 +14,7 @@ import {
   NewProductPage,
 } from "../pages";
 import { Error } from "../fallback";
-import { loginAction } from "../util/actions";
+import { loginAction, formAction } from "../util/actions";
 import { checkAuthLoader, rootLoader } from "../util/loaders";
 
 export const router = createBrowserRouter([
@@ -49,12 +49,14 @@ export const router = createBrowserRouter([
               {
                 path: "edit",
                 element: <EditProductPage />,
+                action: formAction,
               },
             ],
           },
           {
             path: "new",
             element: <NewProductPage />,
+            action: formAction,
           },
         ],
       },

@@ -1,4 +1,5 @@
 import { json } from "react-router-dom";
+import { Product } from "./interfaces";
 
 //util
 const requestFetch = async (url: string, config: object) => {
@@ -15,11 +16,37 @@ export const fetchAllProducts = async () => {
   const resData = await requestFetch("https://fakestoreapi.com/products", {});
   return resData;
 };
+
 export const fetchProductItem = async (id: string) => {
   const resData = await requestFetch(
     `https://fakestoreapi.com/products/${id}`,
     {}
   );
+  return resData;
+};
+
+export const fetchAllCategory = async () => {
+  const resData = await requestFetch(
+    "https://fakestoreapi.com/products/categories",
+    {}
+  );
+  return resData;
+};
+
+export const postProduct = async (
+  product: Product,
+  method: string,
+  id: number
+) => {
+  let url = "https://fakestoreapi.com/products";
+  if (method === "PATCH") {
+    url += `/${id}`;
+  }
+  const resData = await requestFetch(url, {
+    method: method,
+    body: JSON.stringify(product),
+  });
+  console.log(resData);
   return resData;
 };
 

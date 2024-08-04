@@ -24,7 +24,8 @@ export default Page;
 
 const Container = styled.article`
   width: 95%;
-  height: fit-content;
+  height: 80%;
+  overflow-y: auto;
   margin: 20px 10px;
   display: flex;
   flex-direction: column;

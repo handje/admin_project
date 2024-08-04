@@ -4,7 +4,9 @@ interface LabelProps {
   id: string;
   name: string;
   type?: string;
-  defaultValue: string | number;
+  defaultValue?: string | number;
+  step?: number;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   children?: React.ReactNode;
 }
 

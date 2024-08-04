@@ -45,6 +45,7 @@ const Container = styled.div`
 `;
 const Content = styled.div`
   width: 100%;
+  height: 100%;
   padding: 64px 10px 0 10px;
   display: flex;
 `;

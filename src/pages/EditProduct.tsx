@@ -19,7 +19,7 @@ const EditProductPage = () => {
     };
     fetchData();
   }, [id]);
-  return <ProductForm product={product} />;
+  return <ProductForm product={product} method="patch" />;
 };
 
 export default EditProductPage;

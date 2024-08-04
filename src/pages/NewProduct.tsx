@@ -1,7 +1,7 @@
 import { ProductForm } from "../components/products";
 
 const NewProductPage = () => {
-  return <ProductForm />;
+  return <ProductForm method="post" />;
 };
 
 export default NewProductPage;
