@@ -1,5 +1,6 @@
 import Count from "./Count";
-import Charts from "./Charts";
 import List from "./List";
+import CategoryChart from "./CategoryChart";
+import RankChart from "./RankChart";
 
-export { Count, Charts, List };
+export { Count, List, CategoryChart, RankChart };

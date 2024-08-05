@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Count, Charts, List } from "../components/home";
+import { Count, List, CategoryChart, RankChart } from "../components/home";
 
 import { useRouteLoaderData } from "react-router-dom";
 import { Customer, Order, Product } from "../util/interfaces";
@@ -22,7 +22,12 @@ const Home = () => {
         <List title="최근 주문 내역" data={carts} />
       </Wrapper>
       <Wrapper>
-        <Charts products={products} carts={carts} />
+        <ChartContainer>
+          <CategoryChart products={products}></CategoryChart>
+        </ChartContainer>
+        <ChartContainer>
+          <RankChart propsData={carts}></RankChart>
+        </ChartContainer>
       </Wrapper>
     </Container>
   );
@@ -44,7 +49,7 @@ const Container = styled.div`
 `;
 const Wrapper = styled.div`
   width: 50%;
-  height: 100%;
+  height: 90%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -60,4 +65,12 @@ const CountContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+`;
+const ChartContainer = styled.div`
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  border: 2px solid ${({ theme }) => theme.colors.border300};
+  margin-bottom: 5px;
 `;

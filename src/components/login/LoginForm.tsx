@@ -1,7 +1,7 @@
 import { useActionData, Form } from "react-router-dom";
 import styled from "styled-components";
 
-import { Input } from "../common";
+import Input from "./Input";
 
 const LoginForm = () => {
   const error = useActionData() as { message: string };

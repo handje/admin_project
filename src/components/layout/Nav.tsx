@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import {
   BsHouseDoorFill,
@@ -8,54 +7,30 @@ import {
   BsCartCheckFill,
 } from "react-icons/bs";
 
-import { TitleContext } from "../../store/TitleContext";
-
 const Nav = () => {
-  const navigate = useNavigate();
-  const { handleChangeTitle } = useContext(TitleContext);
-
   return (
     <NavContainer>
       <StyledNav>
         <StyledLink to="/">
-          <Menu
-            onClick={() => {
-              handleChangeTitle("Home");
-            }}
-          >
+          <Menu>
             <BsHouseDoorFill />
             <p>Home</p>
           </Menu>
         </StyledLink>
         <StyledLink to="/products">
-          <Menu
-            onClick={() => {
-              navigate("products");
-              handleChangeTitle("Products");
-            }}
-          >
+          <Menu>
             <BsBagCheckFill />
             <p>Products</p>
           </Menu>
         </StyledLink>
         <StyledLink to="/customers">
-          <Menu
-            onClick={() => {
-              navigate("customers");
-              handleChangeTitle("Customers");
-            }}
-          >
+          <Menu>
             <BsFillFileEarmarkPersonFill />
             <p>Customers</p>
           </Menu>
         </StyledLink>
         <StyledLink to="/carts">
-          <Menu
-            onClick={() => {
-              navigate("carts");
-              handleChangeTitle("Carts");
-            }}
-          >
+          <Menu>
             <BsCartCheckFill />
             <p>Carts</p>
           </Menu>

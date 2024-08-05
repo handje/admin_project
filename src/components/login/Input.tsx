@@ -39,7 +39,7 @@ const CustomInput = styled.input<{ $correct: boolean }>`
   margin-left: 10px;
   padding: 5px;
   font-size: 25px;
-  color:${({ theme }) => theme.colors.textColor}
+  color: ${({ theme }) => theme.colors.darkBlue700};
   border: 3px solid
     ${({ $correct, theme }) =>
       $correct ? theme.colors.input.border : theme.colors.warning};

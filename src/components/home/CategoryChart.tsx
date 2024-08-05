@@ -1,36 +1,43 @@
 import { Chart as ChartJS, registerables } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+
 import theme from "../../styles/theme";
+import { Product } from "../../util/interfaces";
 
 ChartJS.register(...registerables);
 
-const DoughnutChart = ({
-  title,
-  propsData,
-}: {
-  title: string;
-  propsData: [string, number][];
-}) => {
+const CategoryChart = ({ products }: { products: Product[] }) => {
+  const countProducts = new Map();
+  products.forEach((product) => {
+    if (countProducts.has(product.category)) {
+      countProducts.set(
+        product.category,
+        countProducts.get(product.category) + 1
+      );
+    } else {
+      countProducts.set(product.category, 1);
+    }
+  });
+
   const options = {
     responsive: true,
     plugins: {
       legend: {
-        display: false,
+        display: true,
       },
 
       title: {
         display: true,
-        text: title,
+        text: "카테고리별 상품 수",
       },
     },
   };
   const labels = [];
   const chartData = [];
-  for (let i = 0; i < propsData.length; i++) {
-    labels.push(propsData[i][0]);
-    chartData.push(propsData[i][1]);
+  for (const [key, value] of countProducts) {
+    labels.push(key);
+    chartData.push(value);
   }
-  console.log(theme.colors);
   const data = {
     labels,
     datasets: [
@@ -50,4 +57,4 @@ const DoughnutChart = ({
   return <Doughnut options={options} data={data} />;
 };
 
-export default DoughnutChart;
+export default CategoryChart;
