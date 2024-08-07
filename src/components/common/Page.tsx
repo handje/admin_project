@@ -37,7 +37,7 @@ const Container = styled.article`
   width: 95%;
   height: 80%;
   overflow-y: auto;
-  margin: 20px 10px;
+  margin: 20px auto;
   display: flex;
   flex-direction: column;
   & > p {

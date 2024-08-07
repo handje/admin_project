@@ -44,7 +44,9 @@ const Container = styled.div`
 `;
 const Content = styled.main`
   width: 100%;
-  height: 100%;
-  padding: 64px 10px 0 10px;
+  margin: 64px 10px 0 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  ${({ theme }) => theme.util.scroll(theme.colors.darkBlue500)}
 `;
 export default Layout;

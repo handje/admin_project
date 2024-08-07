@@ -26,34 +26,37 @@ const Modal = ({ open, onClose, loginedInfo }: ModalProps) => {
   };
 
   return createPortal(
-    <>
-      <dialog ref={dialog} onClose={onClose}>
-        <Header>
-          <h2>Admin</h2>
-          <button onClick={onClose}>X</button>
-        </Header>
-        <div>
-          {loginedInfo ? (
-            <>
-              <p>NAME : {loginedInfo.name}</p>
-              <p>DEPT : {loginedInfo.depart}</p>
-              <p>NUM : {loginedInfo.num}</p>
-              <p>EMAIL : {loginedInfo.email}</p>
-            </>
-          ) : (
-            <p>no data</p>
-          )}
-        </div>
-        <ButtonContainer>
-          <button onClick={handleLogout}>logout</button>
-        </ButtonContainer>
-      </dialog>
-    </>,
+    <dialog ref={dialog} onClose={onClose}>
+      <Header>
+        <h2>Admin</h2>
+        <button onClick={onClose}>X</button>
+      </Header>
+      <Container>
+        {loginedInfo ? (
+          <>
+            <p>NAME : {loginedInfo.name}</p>
+            <p>DEPT : {loginedInfo.depart}</p>
+            <p>NUM : {loginedInfo.num}</p>
+            <p>EMAIL : {loginedInfo.email}</p>
+          </>
+        ) : (
+          <p>no data</p>
+        )}
+      </Container>
+      <ButtonContainer>
+        <button onClick={handleLogout}>logout</button>
+      </ButtonContainer>
+    </dialog>,
     document.getElementById("modal") || document.body
   );
 };
+const Container = styled.div`
+  width: 350px;
+  height: 150px;
+  font-size: 25px;
+`;
+
 const Header = styled.div`
-  width: 100%;
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
@@ -63,10 +66,9 @@ const Header = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: end;
-  gap: 10px;
-  margin-top: 15px;
   & > button {
     font-weight: bold;
+    font-size: 20px;
   }
 `;
 export default Modal;

@@ -80,11 +80,11 @@ const util = {
   scroll: (color: string) => css`
     &::-webkit-scrollbar {
       /** 스크롤바의 너비 */
-      width: 4px;
+      width: 5px;
     }
     &::-webkit-scrollbar-thumb {
       /** 스크롤바 길이 */
-      height: 25%;
+      height: 10%;
       /** 스크롤바의 색상 */
       background: ${color};
       border-radius: 10px;
@@ -92,7 +92,6 @@ const util = {
     &::-webkit-scrollbar-track {
       /** 스크롤바 뒷 배경 색상 */
       background: white;
-      border: 1px solid ${color};
     }
   `,
 };
