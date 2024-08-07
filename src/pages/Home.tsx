@@ -1,22 +1,21 @@
 import styled from "styled-components";
+import { useRouteLoaderData } from "react-router-dom";
 
 import { Count, List, CategoryChart, RankChart } from "../components/home";
-
-import { useRouteLoaderData } from "react-router-dom";
-import { Customer, Order, Product } from "../util/interfaces";
+import { User, Cart, Product } from "../util/types";
 
 const Home = () => {
-  const { products, customers, carts } = useRouteLoaderData("root") as {
+  const { products, users, carts } = useRouteLoaderData("root") as {
     products: Product[];
-    customers: Customer[];
-    carts: Order[];
+    users: User[];
+    carts: Cart[];
   };
 
   return (
     <Container>
       <Wrapper>
         <CountContainer>
-          <Count>가입자 : {customers?.length}</Count>
+          <Count>가입자 : {users?.length}</Count>
           <Count>총 상품 : {products?.length}</Count>
         </CountContainer>
         <List title="최근 주문 내역" data={carts} />

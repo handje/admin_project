@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Product } from "../util/interfaces";
+import { Product } from "../util/types";
 import { fetchProductItem } from "../util/fetchData";
 import { ProductForm } from "../components/products";
 

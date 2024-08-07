@@ -23,10 +23,10 @@ const Nav = () => {
             <p>Products</p>
           </Menu>
         </StyledLink>
-        <StyledLink to="/customers">
+        <StyledLink to="/users">
           <Menu>
             <BsFillFileEarmarkPersonFill />
-            <p>Customers</p>
+            <p>Users</p>
           </Menu>
         </StyledLink>
         <StyledLink to="/carts">

@@ -2,9 +2,8 @@ import { useState } from "react";
 import { Outlet, useNavigation } from "react-router-dom";
 import styled from "styled-components";
 
-import Header from "./Header";
-import Nav from "./Nav";
-import { Loading } from "../../fallback";
+import { Header, Nav } from "../components/layout";
+import { Loading } from "../fallback";
 
 const Layout = () => {
   const [isNavOpen, setIsNavOpen] = useState(() => {
@@ -43,10 +42,9 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
 `;
-const Content = styled.div`
+const Content = styled.main`
   width: 100%;
   height: 100%;
   padding: 64px 10px 0 10px;
-  display: flex;
 `;
 export default Layout;

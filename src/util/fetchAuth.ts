@@ -1,24 +1,12 @@
 import { json } from "react-router-dom";
 
-interface AuthForm {
-  email: string;
-  password: string;
-}
+import { Auth, AdminInfo } from "./types";
 
-interface AuthInfo {
-  email: string;
-  password: string;
-  role: string;
-  name: string;
-  depart: string;
-  num: string;
-}
-
-export const fetchAuth = async (authData: AuthForm) => {
+export const fetchAuth = async (authData: Auth) => {
   const response = await fetch("/data/login.json");
-  const allLoginInfo: { admin: AuthInfo[] } = await response.json();
+  const allLoginInfo: { admin: AdminInfo[] } = await response.json();
 
-  const isAuth = allLoginInfo?.admin?.filter((info) => {
+  const isAuth = allLoginInfo?.admin.filter((info) => {
     return info.email === authData.email && info.password === authData.password;
   });
 
@@ -34,10 +22,3 @@ export const fetchAuth = async (authData: AuthForm) => {
   }
   return json({ message: "Login Failed" }, { status: 401 });
 };
-
-// export const fetchAuthRole = async (token) => {
-//   const response = await fetch("/data/role.json");
-//   const allRoles = await response.json();
-//   console.log(response);
-//   return null;
-// };

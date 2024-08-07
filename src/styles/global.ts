@@ -25,7 +25,7 @@ time, mark, audio, video {
  	-ms-user-select:none;
  	user-select:none
 }
-/* HTML5 display-role reset for older browsers */
+
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;

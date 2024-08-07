@@ -2,7 +2,7 @@ import { Chart as ChartJS, registerables } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
 import theme from "../../styles/theme";
-import { Product } from "../../util/interfaces";
+import { Product } from "../../util/types";
 
 ChartJS.register(...registerables);
 

@@ -2,6 +2,7 @@ import { useActionData, Form } from "react-router-dom";
 import styled from "styled-components";
 
 import Input from "./Input";
+import { Button } from "../../styles/styles";
 
 const LoginForm = () => {
   const error = useActionData() as { message: string };
@@ -25,7 +26,7 @@ const LoginForm = () => {
           correct={!error}
         />
         <ButtonContainer>
-          <CustomButton>OK</CustomButton>
+          <Button>OK</Button>
         </ButtonContainer>
       </Form>
     </CustomLogin>
@@ -33,10 +34,12 @@ const LoginForm = () => {
 };
 
 const CustomLogin = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
+  align-items: center;
   margin: auto;
 `;
 
@@ -46,19 +49,6 @@ const ButtonContainer = styled.div`
   justify-content: end;
   align-items: end;
   font-size: 30px;
-`;
-
-const CustomButton = styled.button`
-  padding: 10px 20px;
-  border-radius: 50%;
-  ${({ theme }) => {
-    return `background-color:${theme.colors.button.bgColor};
-    color:${theme.colors.button.textColor}`;
-  }};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.button.hover};
-  }
 `;
 
 const Error = styled.p`

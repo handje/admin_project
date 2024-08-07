@@ -1,17 +1,19 @@
 import styled from "styled-components";
 
+import { Label } from "../../styles/styles";
+
 interface InputProps {
   title: string;
   id: string;
   name: string;
-  type?: string;
+  type: string;
   correct: boolean;
 }
 
 const Input = ({ title, id, name, type, correct }: InputProps) => {
   return (
     <Container>
-      <label htmlFor={id}>{title}</label>
+      <Label htmlFor={id}>{title}</Label>
       <CustomInput
         id={id}
         name={name}
@@ -29,19 +31,18 @@ const Container = styled.div`
   justify-content: end;
   align-items: center;
   margin-bottom: 30px;
-  font-size: 30px;
 `;
 
 const CustomInput = styled.input<{ $correct: boolean }>`
   outline: none;
   width: 300px;
-  height: 50px;
+  height: 40px;
   margin-left: 10px;
   padding: 5px;
   font-size: 25px;
   color: ${({ theme }) => theme.colors.darkBlue700};
   border: 3px solid
     ${({ $correct, theme }) =>
-      $correct ? theme.colors.input.border : theme.colors.warning};
+      $correct ? theme.colors.border300 : theme.colors.warning};
 `;
 export default Input;

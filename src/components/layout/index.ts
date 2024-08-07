@@ -1,3 +1,4 @@
-import Layout from "./Layout";
+import Header from "./Header";
+import Nav from "./Nav";
 
-export { Layout };
+export { Header, Nav };

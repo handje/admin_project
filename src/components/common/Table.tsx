@@ -1,17 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-interface TableProps<T> {
+import { Product, User, Cart } from "../../util/types";
+
+type DataType = Product | User | Cart;
+
+interface TableProps {
   headers: { text: string; value: string }[];
-  data: T[];
+  data: DataType[];
   pathname: string;
 }
 
-const Table = <T,>({ headers, data, pathname }: TableProps<T>) => {
+const Table = ({ headers, data, pathname }: TableProps) => {
   const navigate = useNavigate();
-  const handleRowClick = (rowData: T) => {
-    navigate(`/${pathname}/${rowData.id}`);
-  };
+
   return (
     <TableContainer>
       <StyledTable>
@@ -23,12 +25,15 @@ const Table = <T,>({ headers, data, pathname }: TableProps<T>) => {
           </tr>
         </thead>
         <tbody>
-          {data?.map((rowData, idx) => {
+          {data?.map((rowData: DataType, idx) => {
             return (
-              <TableRow key={idx} onClick={() => handleRowClick(rowData)}>
-                {headers.map((key) => (
-                  <TableCell key={key.value}>{rowData[key.value]}</TableCell>
-                ))}
+              <TableRow
+                key={idx}
+                onClick={() => navigate(`/${pathname}/${rowData.id}`)}
+              >
+                {headers.map(({ value }) => {
+                  return <TableCell key={value}>{rowData[value]}</TableCell>;
+                })}
               </TableRow>
             );
           })}

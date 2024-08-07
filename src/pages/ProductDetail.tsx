@@ -4,9 +4,9 @@ import { useParams } from "react-router-dom";
 import { ProductItem } from "../components/products";
 import { Loading } from "../fallback";
 import { fetchProductItem } from "../util/fetchData";
-import { Product } from "../util/interfaces";
+import { Product } from "../util/types";
 
-const ProductDetail = () => {
+const ProductDetailPage = () => {
   const [product, setProduct] = useState<Product>();
   const { id } = useParams() as { id: string };
 
@@ -25,4 +25,4 @@ const ProductDetail = () => {
   return <>{product ? <ProductItem product={product} /> : <Loading />}</>;
 };
 
-export default ProductDetail;
+export default ProductDetailPage;

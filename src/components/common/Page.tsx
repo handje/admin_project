@@ -2,7 +2,15 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { BsArrowLeft } from "react-icons/bs";
 
-const Page = ({ id, children }: { id?: number; children: React.ReactNode }) => {
+const Page = ({
+  id,
+  title,
+  children,
+}: {
+  id?: number;
+  title: string;
+  children: React.ReactNode;
+}) => {
   const navigate = useNavigate();
   return (
     <Container>
@@ -16,7 +24,10 @@ const Page = ({ id, children }: { id?: number; children: React.ReactNode }) => {
         </button>
         <p>{id}</p>
       </Header>
-      <Content>{children}</Content>
+      <Content>
+        <Title>{title}</Title>
+        {children}
+      </Content>
     </Container>
   );
 };
@@ -43,6 +54,12 @@ const Header = styled.div`
   padding: 10px;
   ${({ theme }) => `background-color:${theme.colors.content.headerBg};
   color:${theme.colors.content.headerTxt}`};
+`;
+
+const Title = styled.h1`
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 15px;
 `;
 
 const Content = styled.div`

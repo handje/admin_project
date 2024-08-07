@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BsPersonCircle } from "react-icons/bs";
 
-import Info from "./Info.tsx";
+import Modal from "./modal";
 
 const UserIcon = () => {
   const [isUserModalOpen, setIsUSerModalOpen] = useState(false);
@@ -18,7 +18,7 @@ const UserIcon = () => {
   };
   return (
     <>
-      <Info
+      <Modal
         open={isUserModalOpen}
         onClose={handleCloseModal}
         loginedInfo={loginedInfo}

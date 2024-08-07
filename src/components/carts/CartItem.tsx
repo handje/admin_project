@@ -1,37 +1,30 @@
-import { styled } from "styled-components";
-
 import { Page } from "../common";
-import { Order } from "../../util/interfaces";
+import { Cart } from "../../util/types";
 import { formatDate } from "../../util/formatter";
+import { ListWrapper, Attributes } from "../../styles/styles";
 
-const CartItem = ({ cart }: { cart: Order }) => {
+const CartItem = ({ cart }: { cart: Cart }) => {
   return (
-    <Page id={cart.id}>
-      <ul>
-        <Item>
+    <Page id={cart.id} title="">
+      <ListWrapper>
+        <li>
           <Attributes>Date</Attributes> :{formatDate(cart.date)}
-        </Item>
-        <Item>
+        </li>
+        <li>
           <Attributes>USER ID</Attributes> : {cart.userId}
-        </Item>
-        <Item>
+        </li>
+        <li>
           <Attributes>Products</Attributes>
           <ul>
             {cart.products.map((product) => (
-              <li>{`${product.productId} X ${product.quantity}`}</li>
+              <li
+                key={product.productId}
+              >{`${product.productId} X ${product.quantity}`}</li>
             ))}
           </ul>
-        </Item>
-      </ul>
+        </li>
+      </ListWrapper>
     </Page>
   );
 };
 export default CartItem;
-
-const Item = styled.li`
-  font-size: 18px;
-  line-height: 300%;
-`;
-const Attributes = styled.span`
-  font-weight: bold;
-`;

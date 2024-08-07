@@ -1,8 +1,9 @@
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 
-import { Product } from "../../util/interfaces";
+import { Product } from "../../util/types";
 import Table from "../common/Table";
+import { ButtonCSS } from "../../styles/styles";
 
 const ProductsList = ({ products }: { products: Product[] }) => {
   const headers = [
@@ -28,17 +29,7 @@ const Container = styled.div`
 `;
 
 const CustomButton = styled(Link)`
-  width: 50px;
-  padding: 10px;
+  ${ButtonCSS}
   border-radius: 10%;
-  text-align: center;
   margin-top: 10px;
-  ${({ theme }) => {
-    return `background-color:${theme.colors.button.bgColor};
-    color:${theme.colors.button.textColor}`;
-  }};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.button.hover};
-  }
 `;

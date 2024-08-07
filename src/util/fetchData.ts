@@ -1,5 +1,5 @@
 import { json } from "react-router-dom";
-import { Product } from "./interfaces";
+import { Product } from "./types";
 
 //util
 const requestFetch = async (url: string, config: object) => {
@@ -11,7 +11,7 @@ const requestFetch = async (url: string, config: object) => {
   return data;
 };
 
-//products
+//products API
 export const fetchAllProducts = async () => {
   const resData = await requestFetch("https://fakestoreapi.com/products", {});
   return resData;
@@ -36,7 +36,7 @@ export const fetchAllCategory = async () => {
 export const postProduct = async (
   product: Product,
   method: string,
-  id: number
+  id?: string
 ) => {
   let url = "https://fakestoreapi.com/products";
   if (method === "PATCH") {
@@ -46,16 +46,15 @@ export const postProduct = async (
     method: method,
     body: JSON.stringify(product),
   });
-  console.log(resData);
   return resData;
 };
 
-//customers
-export const fetchAllCustomersInfo = async () => {
+//users API
+export const fetchAllUsers = async () => {
   const resData = await requestFetch("https://fakestoreapi.com/users", {});
   return resData;
 };
-export const fetchCustomerItem = async (id: string) => {
+export const fetchUserItem = async (id: string) => {
   const resData = await requestFetch(
     `https://fakestoreapi.com/users/${id}`,
     {}
@@ -63,13 +62,13 @@ export const fetchCustomerItem = async (id: string) => {
   return resData;
 };
 
-//carts
+//carts API
 export const fetchAllCarts = async () => {
   const resData = await requestFetch("https://fakestoreapi.com/carts", {});
   return resData;
 };
 
-export const fetchCustomerCartItem = async (id: string) => {
+export const fetchUsersCarts = async (id: string) => {
   const resData = await requestFetch(
     `https://fakestoreapi.com/carts/user/${id}`,
     {}

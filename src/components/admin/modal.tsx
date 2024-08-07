@@ -2,9 +2,10 @@ import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { ModalProps } from "../../util/interfaces";
+import { ModalProps } from "../../util/types";
+import { createPortal } from "react-dom";
 
-const Info = ({ open, onClose, loginedInfo }: ModalProps) => {
+const Modal = ({ open, onClose, loginedInfo }: ModalProps) => {
   const navigate = useNavigate();
   const dialog = useRef<HTMLDialogElement>(null);
 
@@ -24,7 +25,7 @@ const Info = ({ open, onClose, loginedInfo }: ModalProps) => {
     navigate("/login");
   };
 
-  return (
+  return createPortal(
     <>
       <dialog ref={dialog} onClose={onClose}>
         <Header>
@@ -47,7 +48,8 @@ const Info = ({ open, onClose, loginedInfo }: ModalProps) => {
           <button onClick={handleLogout}>logout</button>
         </ButtonContainer>
       </dialog>
-    </>
+    </>,
+    document.getElementById("modal") || document.body
   );
 };
 const Header = styled.div`
@@ -67,4 +69,4 @@ const ButtonContainer = styled.div`
     font-weight: bold;
   }
 `;
-export default Info;
+export default Modal;

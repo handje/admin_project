@@ -1,12 +1,13 @@
 import styled from "styled-components";
-import Page from "../common/Page";
-import { Product } from "../../util/interfaces";
 import { Link } from "react-router-dom";
+
+import { Page } from "../common";
+import { Product } from "../../util/types";
+import { ListWrapper, Attributes } from "../../styles/styles";
 
 const ProductItem = ({ product }: { product: Product }) => {
   return (
-    <Page id={product.id}>
-      <Title>{product.title}</Title>
+    <Page id={product.id} title={product.title}>
       <ButtonContainer>
         <Link to="edit">edit</Link>
       </ButtonContainer>
@@ -33,11 +34,6 @@ const ProductItem = ({ product }: { product: Product }) => {
   );
 };
 export default ProductItem;
-const Title = styled.h1`
-  font-size: 30px;
-  font-weight: bold;
-  margin-bottom: 10px;
-`;
 
 const Info = styled.div`
   display: flex;
@@ -67,17 +63,9 @@ const ButtonContainer = styled.menu`
   }
 `;
 
-const Property = styled.ul`
+const Property = styled(ListWrapper)`
   display: flex;
   flex: 2;
   flex-direction: column;
   margin-left: 20px;
-  & > li {
-    font-size: 20px;
-    line-height: 300%;
-  }
-`;
-
-const Attributes = styled.span`
-  font-weight: bold;
 `;

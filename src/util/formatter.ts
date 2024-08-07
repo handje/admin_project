@@ -8,13 +8,3 @@ export const formatDate = (date: string) => {
 export const sortByDate = (date1: string, date2: string) => {
   return new Date(date2).getTime() - new Date(date1).getTime();
 };
-
-export const formatProducts = (product) => {
-  return { ...product };
-};
-export const formatCustomer = (customer) => {
-  return { ...customer };
-};
-export const formatCarts = (cart) => {
-  return { ...cart };
-};

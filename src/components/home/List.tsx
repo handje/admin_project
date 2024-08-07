@@ -1,6 +1,6 @@
 import { Table } from "../../components/common";
 import { formatDate, sortByDate } from "../../util/formatter";
-import { Order } from "../../util/interfaces";
+import { Order } from "../../util/types";
 
 const List = ({ title, data }: { title: string; data: Order[] }) => {
   const headers = [

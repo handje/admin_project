@@ -1,15 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { Layout } from "../components/layout";
 import {
+  Layout,
   Login,
   Home,
-  Products,
-  ProductDetail,
-  Customers,
-  CustomerDetail,
-  Carts,
-  CartDetail,
+  UsersPage,
+  UserDetailPage,
+  ProductsPage,
+  ProductDetailPage,
+  CartsPage,
+  CartDetailPage,
   EditProductPage,
   NewProductPage,
 } from "../pages";
@@ -37,14 +37,14 @@ export const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Products />,
+            element: <ProductsPage />,
           },
           {
             path: ":id",
             children: [
               {
                 index: true,
-                element: <ProductDetail />,
+                element: <ProductDetailPage />,
               },
               {
                 path: "edit",
@@ -61,17 +61,17 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        id: "customers",
-        path: "customers",
+        id: "users",
+        path: "users",
         loader: checkAuthLoader,
         children: [
           {
             index: true,
-            element: <Customers />,
+            element: <UsersPage />,
           },
           {
             path: ":id",
-            element: <CustomerDetail />,
+            element: <UserDetailPage />,
           },
         ],
       },
@@ -82,11 +82,11 @@ export const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Carts />,
+            element: <CartsPage />,
           },
           {
             path: ":id",
-            element: <CartDetail />,
+            element: <CartDetailPage />,
           },
         ],
       },

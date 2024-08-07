@@ -12,7 +12,7 @@ const colors = {
   darkBlue900: "#0b1f29",
 
   border100: "#6198b0",
-  border300: "#6198b0",
+  border300: "#45758c",
   hover: "#b3d3e2",
 
   header: {
@@ -45,11 +45,6 @@ const colors = {
     bgColor: "#2c698d",
     textColor: "#fff",
     hover: "#a5d8da",
-  },
-  input: {
-    //bgColor: "#bae8e8",
-    border: "#2c698d",
-    textColor: "#2c698d",
   },
   warning: "#f00",
 };

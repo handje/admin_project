@@ -4,10 +4,10 @@ import { useParams } from "react-router-dom";
 import { CartItem } from "../components/carts";
 import { fetchCartItem } from "../util/fetchData";
 import { Loading } from "../fallback";
-import { Order } from "../util/interfaces";
+import { Cart } from "../util/types";
 
-const CartDetail = () => {
-  const [cart, setCart] = useState<Order>();
+const CartDetailPage = () => {
+  const [cart, setCart] = useState<Cart>();
   const { id } = useParams() as { id: string };
 
   useEffect(() => {
@@ -24,4 +24,4 @@ const CartDetail = () => {
   return <>{cart ? <CartItem cart={cart} /> : <Loading />}</>;
 };
 
-export default CartDetail;
+export default CartDetailPage;

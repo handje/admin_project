@@ -2,11 +2,7 @@ import { json, redirect } from "react-router-dom";
 
 import { postProduct } from "./fetchData";
 import { fetchAuth } from "./fetchAuth";
-
-interface Auth {
-  email: string;
-  password: string;
-}
+import { Auth } from "./types";
 
 export const loginAction = async ({ request }: { request: Request }) => {
   const data = await request.formData();
@@ -35,8 +31,9 @@ export const formAction = async ({
   params,
 }: {
   request: Request;
-  params: { id: number };
+  params: { id?: string };
 }) => {
+  console.log(params);
   const data = await request.formData();
 
   const title = data.get("title");

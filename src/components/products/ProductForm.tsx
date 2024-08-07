@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { Form } from "react-router-dom";
 import { styled } from "styled-components";
 
-import { Product } from "../../util/interfaces";
+import { Product } from "../../util/types";
 import { Page } from "../common";
 import FormInput from "./FormInput";
 import { fetchAllCategory } from "../../util/fetchData";
+import { Button, Label } from "../../styles/styles";
 
 type Method = "post" | "patch";
 
@@ -19,6 +20,7 @@ const ProductForm = ({
   const [categoryList, setCategoryList] = useState<string[]>([]);
   const [category, setCategory] = useState<string>("");
   const [imgUrl, setImgUrl] = useState<string>("");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -37,7 +39,7 @@ const ProductForm = ({
   }, [product]);
 
   return (
-    <Page id={product?.id}>
+    <Page id={product?.id} title={method}>
       <StyledForm method={method}>
         <FormInput
           id="name"
@@ -66,7 +68,7 @@ const ProductForm = ({
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               >
-                <option value="1">Select Categroy</option>
+                <option value="">Select Categroy</option>
                 {categoryList?.map((item) => {
                   return (
                     <option key={item} value={item}>
@@ -74,7 +76,6 @@ const ProductForm = ({
                     </option>
                   );
                 })}
-                <option value="2">second</option>
               </select>
             </FormInput>
             <FormInput
@@ -85,7 +86,7 @@ const ProductForm = ({
               step={0.1}
             />
             <Wrapper>
-              <label htmlFor="description">DESCRIPTION</label>
+              <Label htmlFor="description">DESCRIPTION</Label>
               <textarea
                 name="description"
                 id="description"
@@ -96,7 +97,7 @@ const ProductForm = ({
           </Content>
         </Container>
         <ButtonContainer>
-          <CustomButton>OK</CustomButton>
+          <Button>OK</Button>
         </ButtonContainer>
       </StyledForm>
     </Page>
@@ -125,7 +126,7 @@ const Image = styled.div`
 const ImageBox = styled.div`
   width: 95%;
   height: 300px;
-  border: 1px solid ${({ theme }) => theme.colors.border300};
+  border: 1px solid ${({ theme }) => theme.colors.border100};
   margin-bottom: 5px;
   & > img {
     width: 100%;
@@ -143,11 +144,7 @@ const Content = styled.div`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  & > label {
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 5px;
-  }
+
   & > textarea {
     width: 100%;
     height: 200px;
@@ -155,23 +152,10 @@ const Wrapper = styled.div`
   }
 `;
 
-const ButtonContainer = styled.div`
+const ButtonContainer = styled.menu`
   width: 100%;
   display: flex;
   justify-content: end;
   align-items: end;
   font-size: 30px;
-`;
-
-const CustomButton = styled.button`
-  padding: 10px 20px;
-  border-radius: 50%;
-  ${({ theme }) => {
-    return `background-color:${theme.colors.button.bgColor};
-    color:${theme.colors.button.textColor}`;
-  }};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.button.hover};
-  }
 `;

@@ -1,8 +1,18 @@
+export interface Auth {
+  email: string;
+  password: string;
+}
+
 export interface Admin {
   name: string;
   depart: string;
   num: string;
   email: string;
+}
+
+export interface AdminInfo extends Admin {
+  password: string;
+  role: string;
 }
 
 export interface ModalProps {
@@ -19,7 +29,7 @@ export interface Address {
   geolocation: { lat: string; long: string };
 }
 
-export interface Customer {
+export interface User {
   id: number;
   email: string;
   username: string;
@@ -32,7 +42,8 @@ export interface Customer {
   phone: string;
   fullname?: string;
 }
-export interface Order {
+
+export interface Cart {
   id: number;
   userId: number;
   date: string;

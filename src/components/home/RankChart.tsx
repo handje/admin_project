@@ -2,7 +2,7 @@ import { Chart as ChartJS, registerables } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
 import theme from "../../styles/theme";
-import { Order } from "../../util/interfaces";
+import { Order } from "../../util/types";
 
 ChartJS.register(...registerables);
 

@@ -1,18 +1,11 @@
-import { Suspense } from "react";
-import { useRouteLoaderData, Await } from "react-router-dom";
+import { useRouteLoaderData } from "react-router-dom";
 
 import { CartsList } from "../components/carts";
-import { Order } from "../util/interfaces";
+import { Cart } from "../util/types";
 
-const Carts = () => {
-  const { carts } = useRouteLoaderData("root") as { carts: Order[] };
-  return (
-    <Suspense>
-      <Await resolve={carts}>
-        {(loadedCarts) => <CartsList loadedCarts={loadedCarts} />}
-      </Await>
-    </Suspense>
-  );
+const CartsPage = () => {
+  const { carts } = useRouteLoaderData("root") as { carts: Cart[] };
+  return <CartsList carts={carts} />;
 };
 
-export default Carts;
+export default CartsPage;

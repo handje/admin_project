@@ -1,9 +1,6 @@
 import { redirect } from "react-router-dom";
-import {
-  fetchAllCarts,
-  fetchAllCustomersInfo,
-  fetchAllProducts,
-} from "./fetchData";
+
+import { fetchAllCarts, fetchAllUsers, fetchAllProducts } from "./fetchData";
 
 export const checkAuthLoader = () => {
   const token = localStorage.getItem("token");
@@ -18,8 +15,9 @@ export const rootLoader = async () => {
   if (!token) {
     return null;
   }
+
   const products = await fetchAllProducts();
-  const customers = await fetchAllCustomersInfo();
+  const users = await fetchAllUsers();
   const carts = await fetchAllCarts();
-  return { products, customers, carts };
+  return { products, users, carts };
 };
