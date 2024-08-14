@@ -35,7 +35,7 @@ export const formAction = async ({
 }) => {
   console.log(params);
   const data = await request.formData();
-
+  const id = Number(params.id);
   const title = data.get("title");
   const image = data.get("image");
   const category = data.get("category");
@@ -46,6 +46,7 @@ export const formAction = async ({
     return json({ message: "Please fill all fields" }, { status: 400 });
   } else {
     const productData = {
+      id: id,
       title: title as string,
       image: image as string,
       category: category as string,
