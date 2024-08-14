@@ -1,17 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-import { Product, User, Cart } from "../../util/types";
-
-type DataType = Product | User | Cart;
-
-interface TableProps {
+interface TableProps<T> {
   headers: { text: string; value: string }[];
-  data: DataType[];
+  data: T[];
   pathname: string;
 }
 
-const Table = ({ headers, data, pathname }: TableProps) => {
+const Table = <T extends { id: number }>({
+  headers,
+  data,
+  pathname,
+}: TableProps<T>) => {
   const navigate = useNavigate();
 
   return (
@@ -25,14 +25,19 @@ const Table = ({ headers, data, pathname }: TableProps) => {
           </tr>
         </thead>
         <tbody>
-          {data?.map((rowData: DataType, idx) => {
+          {data?.map((rowData, idx) => {
             return (
               <TableRow
                 key={idx}
                 onClick={() => navigate(`/${pathname}/${rowData.id}`)}
               >
                 {headers.map(({ value }) => {
-                  return <TableCell key={value}>{rowData[value]}</TableCell>;
+                  return (
+                    <TableCell key={value}>
+                      {" "}
+                      {rowData?.[value as keyof T]?.toString()}
+                    </TableCell>
+                  );
                 })}
               </TableRow>
             );

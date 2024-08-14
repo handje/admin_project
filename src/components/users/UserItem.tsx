@@ -1,5 +1,6 @@
 import { Table, Page } from "../common";
 import { User, Cart } from "../../util/types";
+import { formatDate } from "../../util/formatter";
 import { ListWrapper, Attributes } from "../../styles/styles";
 
 const UserItem = ({ user, cartList }: { user: User; cartList: Cart[] }) => {
@@ -11,6 +12,11 @@ const UserItem = ({ user, cartList }: { user: User; cartList: Cart[] }) => {
     .concat(", ", user.name.lastname)
     .toUpperCase();
   const address = `${user.address.number}, ${user.address.street}, ${user.address.city}, ${user.address.number} / ${user.address.zipcode}`;
+
+  const cartsData = cartList.map((cart) => ({
+    ...cart,
+    date: formatDate(cart.date),
+  }));
 
   return (
     <Page id={user.id} title={fullName}>
@@ -29,7 +35,7 @@ const UserItem = ({ user, cartList }: { user: User; cartList: Cart[] }) => {
         </li>
         <li>
           <Attributes>ORDER</Attributes>
-          <Table headers={headers} data={cartList} pathname="carts" />
+          <Table headers={headers} data={cartsData} pathname="carts" />
         </li>
       </ListWrapper>
     </Page>

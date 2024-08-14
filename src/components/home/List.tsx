@@ -1,8 +1,8 @@
 import { Table } from "../../components/common";
 import { formatDate, sortByDate } from "../../util/formatter";
-import { Order } from "../../util/types";
+import { Cart } from "../../util/types";
 
-const List = ({ title, data }: { title: string; data: Order[] }) => {
+const List = ({ title, data }: { title: string; data: Cart[] }) => {
   const headers = [
     { text: "CartID", value: "id" },
     { text: "UserID", value: "userId" },
