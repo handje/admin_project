@@ -1,5 +1,12 @@
 import { styled, css } from "styled-components";
 
+export const ListContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+`;
+
 export const ListWrapper = styled.ul`
   & > li {
     font-size: 20px;

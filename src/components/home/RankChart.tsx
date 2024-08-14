@@ -2,11 +2,11 @@ import { Chart as ChartJS, registerables } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
 import theme from "../../styles/theme";
-import { Order } from "../../util/types";
+import { Cart } from "../../util/types";
 
 ChartJS.register(...registerables);
 
-const RankChart = ({ propsData }: { propsData: Order[] }) => {
+const RankChart = ({ propsData }: { propsData: Cart[] }) => {
   const countCarts = new Map();
   propsData.forEach((cart) => {
     cart.products.forEach((prod) => {

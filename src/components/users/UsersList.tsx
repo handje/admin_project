@@ -1,5 +1,6 @@
 import { User } from "../../util/types";
 import { Table } from "../common";
+import { ListContainer } from "../../styles/styles";
 
 const UsersList = ({ users }: { users: User[] }) => {
   const usersData = users.map((user) => {
@@ -15,6 +16,10 @@ const UsersList = ({ users }: { users: User[] }) => {
     { text: "UserName", value: "username" },
     { text: "Phone", value: "phone" },
   ];
-  return <Table headers={headers} data={usersData} pathname="users" />;
+  return (
+    <ListContainer>
+      <Table headers={headers} data={usersData} pathname="users" />
+    </ListContainer>
+  );
 };
 export default UsersList;
